@@ -3,7 +3,52 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Pan
+  - Pizza
+  - Plate
+  - Cooked Pineapple Slice
+  - Cooked Tomato Slice
+  - Cheese
+  - Cheese Slice
+  - Pinneaple Slice
+  - Cooked Cheese Slice
+  - Cooked Tomato
+  - Tomato Slice
+  - Pinneaple
+  - Tomato
+  - Species
+  - Cooked Cheese
+  - Cooked Pinneaple
+  - Wall Colliders
+  - Board
+  - Kitchen Knife
+  - Cooked Carrot
+  - Lettuce
+  - Cooked Ham
+  - Cooked Lettuce Leaf
+  - Bacon Slice
+  - Cooked Ham Slice
+  - Cooked Fish
+  - Bacon
+  - Cooked Bacon Slice
+  - Fish Slice
+  - Fish
+  - Sausage
+  - Cooked Bacon
+  - Cooked Fish Slice
+  - Ham Slice
+  - Sausage Slice
+  - Cooked Sausage
+  - Cooked Carrot Slice
+  - Cooked Sausage Slice
+  - Cooked Lettuce
+  - Carrot Slice
+  - Ham
+  - Letttuce Leaf
+  - Carrot
+  - Oven
+  - Table
   layers:
   - Default
   - TransparentFX
