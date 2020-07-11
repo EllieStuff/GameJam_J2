@@ -1,0 +1,346 @@
+fileFormatVersion: 2
+guid: 161942a52d14cd64b856ea79eed11946
+ModelImporter:
+  serializedVersion: 19300
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: 76724d8443aafe34581205a1588ee0b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 02 - Default
+    second: {fileID: 2100000, guid: 54a25d96020671240a76a35349b03a30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 03 - Default
+    second: {fileID: 2100000, guid: c136346035d21e741bd7ae12ae495a88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 04 - Default
+    second: {fileID: 2100000, guid: b1590322b630e6046936afc325b9f36e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 06 - Default
+    second: {fileID: 2100000, guid: 80c78bf3380dc164cb6ea4f8a59eeec7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 08 - Default
+    second: {fileID: 2100000, guid: c2301cfa773a8d84f9b3fa7e6dd7a371, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 09 - Default
+    second: {fileID: 2100000, guid: bbd9671dcfee2624f905b6259bb71be3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 10 - Default
+    second: {fileID: 2100000, guid: 292e80c293708f541908d8b8e3f715e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 11 - Default
+    second: {fileID: 2100000, guid: dc72d402d27abc340ba085e05808d3a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 12 - Default
+    second: {fileID: 2100000, guid: 4db5297b3bcfccd4d9c5c45994b79414, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 13 - Default
+    second: {fileID: 2100000, guid: 632e46e822e923741a166f0cf7100866, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 14 - Default
+    second: {fileID: 2100000, guid: c29a76bf080a34e4bb319c76ea7a8cfd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 15 - Default
+    second: {fileID: 2100000, guid: db7ec38a21069ed49b7033e772250976, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 16 - Default
+    second: {fileID: 2100000, guid: b864fc03f53aeb14abfdae647df494ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 17 - Default
+    second: {fileID: 2100000, guid: 32895aa0b4ecbd145857f0acc4188a7e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 18 - Default
+    second: {fileID: 2100000, guid: 5f68745297657a14db450b289c2c30a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 20 - Default
+    second: {fileID: 2100000, guid: 96e8d0cc770fcea4fbdc94119bd3bc4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 21 - Default
+    second: {fileID: 2100000, guid: a5c2bd2744f900a439ef0de0fbe0e071, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 22 - Default
+    second: {fileID: 2100000, guid: 80286f64b802ad640abd92ea02f1ed34, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 23 - Default
+    second: {fileID: 2100000, guid: cb7d5eedc95e08142a92ab34cb0f0d02, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 25 - default
+    second: {fileID: 2100000, guid: 51849e8ede4a6404cb33949463880eaa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 26 - Default
+    second: {fileID: 2100000, guid: 5f63f242ceefc9b4d8db6f05120e12c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 29 - Default
+    second: {fileID: 2100000, guid: 1997287d9db5b644a933a4b7fb966ae4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 30 - Default
+    second: {fileID: 2100000, guid: 770bed6995c615145a4347d5ff95605c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 31 - Default
+    second: {fileID: 2100000, guid: 20a2fae674a720242abfc5dd56783df3, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BaconDiffuseMap
+    second: {fileID: 2800000, guid: 2c5d14779abf4404fa71f0c4c3dd4053, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Bacon_SliceDiffuseMap
+    second: {fileID: 2800000, guid: da90d9cea555d2847af3400e7c8edbc9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: CarrotDiffuseMap
+    second: {fileID: 2800000, guid: 9f606a4c61677df4e9cd0f873ed8f180, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Carrot_SliceDiffuseMap
+    second: {fileID: 2800000, guid: 0be69864bb35ad94e8013b635eb39ef0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cooked_BaconDiffuseMap
+    second: {fileID: 2800000, guid: 738a255d741508c45a3ac0eb102c6390, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cooked_Bacon_SliceDiffuseMap
+    second: {fileID: 2800000, guid: 105f579078180254ab27810931f043e7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cooked_CarrotDiffuseMap
+    second: {fileID: 2800000, guid: 8146eb991437bae42a3bb628d1d3f8e4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cooked_Carrot_SliceDiffuseMap
+    second: {fileID: 2800000, guid: d65057e041f7eb44a9596e0a7a5823bc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cooked_FishDiffuseMap
+    second: {fileID: 2800000, guid: d6aed1150c617894e84670eb68556ff3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cooked_Fish_SliceDiffuseMap
+    second: {fileID: 2800000, guid: c6bdfdd2c56704e4aaa4373838251c39, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cooked_HamDiffuseMap
+    second: {fileID: 2800000, guid: ffbd23e80d46c7d409217bc2f6ceda06, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cooked_Ham_SliceDiffuseMap
+    second: {fileID: 2800000, guid: 5d26fe305da797749b1e087fa9c2313f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cooked_LettuceDiffuseMap
+    second: {fileID: 2800000, guid: dee0fc7758265ac41a15cc7ef3dd6398, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cooked_Lettuce_LeafDiffuseMap
+    second: {fileID: 2800000, guid: 643813df02bc2294a82726a4eedfd46d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cooked_SausageDiffuseMap
+    second: {fileID: 2800000, guid: b608c7251b7266b4fad9dc6987352866, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cooked_Sausage_SliceDiffuseMap
+    second: {fileID: 2800000, guid: 6dca1cdba752c784ebb0d786228a65e7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FishDiffuseMap
+    second: {fileID: 2800000, guid: 1e391aec9e7122a4baf508dd553aff35, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Fish_SliceDiffuseMap
+    second: {fileID: 2800000, guid: 34e584c85ef5b164e9a6fb9980fb72a9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: HamDiffuseMap
+    second: {fileID: 2800000, guid: f8379c2e9d3964f47b11d5a40625c653, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Ham_SliceDiffuseMap
+    second: {fileID: 2800000, guid: 3cc7c52f066c1df4e95e0582ed1c8d3f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: LettuceDiffuseMap
+    second: {fileID: 2800000, guid: e3f1b2cec4ce2cc44b657bcd7cb5ca4a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Lettuce_LeafDiffuseMap
+    second: {fileID: 2800000, guid: 00a339bbbfff28a4b987482ca7da30bd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: OvenDiffuseMap
+    second: {fileID: 2800000, guid: 3888cf2ab2c31cd4d8d7fd7ce1a944ad, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: SausageDiffuseMap
+    second: {fileID: 2800000, guid: 653466a3589b3934182a225d39b9b4f7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Sausage_SliceDiffuseMap
+    second: {fileID: 2800000, guid: fc7a1f239f49534419f4fb731b5ed5dc, type: 3}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
