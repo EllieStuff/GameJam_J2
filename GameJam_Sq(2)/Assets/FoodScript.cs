@@ -10,13 +10,15 @@ public class FoodScript : MonoBehaviour
     public int numOfObjectsToSpawnIfChopped = 2;
 
     private int numOfObjectsToSpawnIfCooked = 1;
-    private Transform kitchenTransform;
+    private GameObject kitchen;
     private bool cooking = false;
     private bool chopping = false;
+    const float edge = 2;
+
 
     private void Start()
     {
-        kitchenTransform = GetComponentInParent<Transform>();
+        kitchen = GameObject.Find("Kitchen_Items");
     }
 
     private void Update()
@@ -26,13 +28,14 @@ public class FoodScript : MonoBehaviour
             RaycastHit hit;
             if (Input.GetKeyDown(Const.MOUSE_RIGHT_BUTTON) && Physics.Raycast(transform.position, Vector3.up, out hit, 5))
             {
-                if (hit.collider.CompareTag("Knife"))
+                if (hit.collider.CompareTag("Kitchen Knife"))
                 {
                     Spawn(objectToSpawnIfChopped, numOfObjectsToSpawnIfChopped);
                     Destroy(gameObject);
                 }
             }
         }
+        
     }
 
     private void Spawn(GameObject objectToSpawn, int numOfObjectsToSpawn)
@@ -40,9 +43,9 @@ public class FoodScript : MonoBehaviour
         for (int i = 0; i < numOfObjectsToSpawn; i++)
         {
             Instantiate(objectToSpawn,
-                new Vector3(transform.position.x + i * 2, transform.position.y + i * 2, transform.position.z + i * 2),
+                new Vector3(transform.position.x, transform.position.y + i * edge, transform.position.z),
                 objectToSpawn.transform.localRotation,
-                kitchenTransform);
+                kitchen.transform);
         }
     }
 
