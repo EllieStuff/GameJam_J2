@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cookingTime: 5
-  objectToSpawnIfCooked: {fileID: 0}
-  objectToSpawnIfChopped: {fileID: 0}
-  numOfObjectsToSpawnIfChopped: 2
+  objectToSpawnIfCooked: {fileID: 194131162035987069, guid: 674d6b71e8ef8284e8fd3cf1aae43a5e,
+    type: 3}
+  objectToSpawnIfChopped: {fileID: 1398538543355073874, guid: e7199852ed7014948a32f2c66451003e,
+    type: 3}
+  numOfObjectsToSpawnIfChopped: 4
