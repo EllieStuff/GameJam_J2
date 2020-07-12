@@ -127,4 +127,4 @@ MonoBehaviour:
   cookingTime: 5
   objectToSpawnIfCooked: {fileID: 0}
   objectToSpawnIfChopped: {fileID: 0}
-  numOfObjectsToSpawnIfChopped: 2
+  numOfObjectsToSpawnIfChopped: 3
