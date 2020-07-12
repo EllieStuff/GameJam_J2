@@ -35,48 +35,70 @@ public class CarrotScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collision col)
+    private void Spawn(GameObject objectToSpawn, int numOfObjectsToSpawn)
     {
-        if (col.gameObject.CompareTag("Pan"))
+        for (int i = 0; i < numOfObjectsToSpawn; i++)
         {
-            cooking = true;
-            StartCoroutine(Cooking());
-        }
-
-        if (col.gameObject.CompareTag("Board"))
-        {
-            chopping = true;
-        }
-    }
-
-    private void OnTriggerExit(Collision col)
-    {
-        if (col.gameObject.CompareTag("Pan"))
-        {
-            cooking = false;
-        }
-
-        if (col.gameObject.CompareTag("Board"))
-        {
-            chopping = false;
-        }
-    }
-
-    void Spawn(GameObject objectToSpawn, int numOfObjectsToSpawn)
-    {
-        for(int i = 0; i < numOfObjectsToSpawn; i++)
-        {
-            Instantiate(objectToSpawn, 
+            Instantiate(objectToSpawn,
                 new Vector3(transform.position.x + i * 2, transform.position.y + i * 2, transform.position.z + i * 2),
                 objectToSpawn.transform.localRotation,
                 kitchenTransform);
         }
     }
 
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.CompareTag("Pan"))
+        {
+            if (objectToSpawnIfCooked != null)
+            {
+                cooking = true;
+                StartCoroutine(Cooking());
+            }
+        }
+
+    }
+
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.CompareTag("Pan"))
+        {
+            if (objectToSpawnIfCooked != null)
+            {
+                cooking = false;
+            }
+        }
+
+    }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.CompareTag("Board"))
+        {
+            if (objectToSpawnIfChopped != null)
+            {
+                chopping = true;
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision col)
+    {
+        if (col.gameObject.CompareTag("Board"))
+        {
+            if (objectToSpawnIfChopped != null)
+            {
+                chopping = false;
+            }
+        }
+    }
+
+
     IEnumerator Cooking()
     {
         double time = 0;
-        while(time < cookingTime)
+        while (time < cookingTime)
         {
             if (!cooking) yield break;
             time += Time.deltaTime;
