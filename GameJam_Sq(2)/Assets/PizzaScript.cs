@@ -19,7 +19,7 @@ public class PizzaScript : MonoBehaviour
 
     void RefreshText()
     {
-        ingredientsText.text = "";
+        ingredientsText.text = "Ingredients: <br>";
         foreach(string ingredient in ingredients)
         {
             ingredientsText.text += "- " + ingredient + "<br>";
