@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4379230171059173701
+--- !u!1 &8116023370200226685
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4379230171059173698}
-  - component: {fileID: 4379230171059173710}
-  - component: {fileID: 4379230171059173697}
-  - component: {fileID: 4379230171059173696}
-  - component: {fileID: 4379230171059173699}
-  - component: {fileID: 6056724746903442610}
+  - component: {fileID: 8116023371338385468}
+  - component: {fileID: 8116023370200226674}
+  - component: {fileID: 8116023370200226673}
+  - component: {fileID: 8116023370200226672}
+  - component: {fileID: 8116023370200226687}
+  - component: {fileID: 8116023370200226686}
   m_Layer: 0
   m_Name: Cooked_Carrot
   m_TagString: Cooked Carrot
@@ -21,35 +21,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4379230171059173698
+--- !u!4 &8116023371338385468
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4379230171059173701}
+  m_GameObject: {fileID: 8116023370200226685}
   m_LocalRotation: {x: 0.7071068, y: -0.000000016582515, z: 0.7071068, w: 0.000000029802322}
-  m_LocalPosition: {x: 1.209, y: 0.9304, z: 0.098652}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.44372907, y: 0.443729, z: 0.44372907}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4379230171059173710
+--- !u!33 &8116023370200226674
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4379230171059173701}
+  m_GameObject: {fileID: 8116023370200226685}
   m_Mesh: {fileID: -2555761338198607764, guid: 161942a52d14cd64b856ea79eed11946, type: 3}
---- !u!23 &4379230171059173697
+--- !u!23 &8116023370200226673
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4379230171059173701}
+  m_GameObject: {fileID: 8116023370200226685}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -82,13 +82,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!54 &4379230171059173696
+--- !u!54 &8116023370200226672
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4379230171059173701}
+  m_GameObject: {fileID: 8116023370200226685}
   serializedVersion: 2
   m_Mass: 0.1
   m_Drag: 0
@@ -98,13 +98,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!64 &4379230171059173699
+--- !u!64 &8116023370200226687
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4379230171059173701}
+  m_GameObject: {fileID: 8116023370200226685}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -112,13 +112,13 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2555761338198607764, guid: 161942a52d14cd64b856ea79eed11946, type: 3}
---- !u!114 &6056724746903442610
+--- !u!114 &8116023370200226686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4379230171059173701}
+  m_GameObject: {fileID: 8116023370200226685}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b1b93ee0b634984d8d7ee5279a85783, type: 3}
@@ -128,8 +128,4 @@ MonoBehaviour:
   objectToSpawnIfCooked: {fileID: 0}
   objectToSpawnIfChopped: {fileID: 3268698634914542433, guid: d8a89bd03f23c1a459f98470fb4774d5,
     type: 3}
-<<<<<<< Updated upstream
   numOfObjectsToSpawnIfChopped: 5
-=======
-  numOfObjectsToSpawnIfChopped: 6
->>>>>>> Stashed changes
