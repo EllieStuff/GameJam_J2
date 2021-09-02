@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5150102866372409657}
   m_Layer: 0
   m_Name: Cooked Pineapple
-  m_TagString: Cooked Pinneaple
+  m_TagString: Cooked Pineapple
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

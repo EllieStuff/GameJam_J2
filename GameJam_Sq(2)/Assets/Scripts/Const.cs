@@ -8,5 +8,6 @@ public static class Const
     public const KeyCode MOUSE_RIGHT_BUTTON = KeyCode.Mouse1;
 
     public enum CameraPositions { TABLE, FURNANCE };
+    public enum GameState { INIT, MAIN_MENU, PLAYING, PAUSED, DELIVERING, DELIVERED };
 
 }

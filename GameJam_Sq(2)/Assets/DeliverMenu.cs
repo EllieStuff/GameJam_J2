@@ -5,11 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class DeliverMenu : MonoBehaviour
 {
+    private MoveCamera camera;
+
     //public static bool gameIsPaused = false;
 
     //public GameObject pauseMenuUI;
 
     // Update is called once per frame
+
+    private void Start()
+    {
+        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MoveCamera>();
+    }
 
     //public void Resume()
     //{
@@ -27,7 +34,8 @@ public class DeliverMenu : MonoBehaviour
 
     public void LoadDeliveryMenu()
     {
-        Time.timeScale = 0f;
+        camera.cameraPosition = Const.CameraPositions.FURNANCE;
+        //Time.timeScale = 0f;
     }
 
     public void RestartScene()

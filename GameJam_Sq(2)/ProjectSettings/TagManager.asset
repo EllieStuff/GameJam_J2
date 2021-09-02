@@ -11,15 +11,12 @@ TagManager:
   - Cooked Tomato Slice
   - Cheese
   - Cheese Slice
-  - Pinneaple Slice
   - Cooked Cheese Slice
   - Cooked Tomato
   - Tomato Slice
-  - Pinneaple
   - Tomato
   - Species
   - Cooked Cheese
-  - Cooked Pinneaple
   - Wall Colliders
   - Board
   - Kitchen Knife
@@ -49,6 +46,9 @@ TagManager:
   - Carrot
   - Oven
   - Table
+  - Pineapple
+  - Cooked Pineapple
+  - Pineapple Slice
   layers:
   - Default
   - TransparentFX
