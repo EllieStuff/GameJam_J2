@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -82,6 +83,8 @@ public class GameManager : MonoBehaviour
 
     };
 
+    private TextMeshProUGUI recipeText;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -105,7 +108,11 @@ public class GameManager : MonoBehaviour
                 break;
 
             case Const.GameState.PLAYING:
-                // Whatever we need
+                recipeText = GameObject.Find("Pizza_Recipe_Text").GetComponent<TextMeshProUGUI>();
+                GenerateGoalIngredientsList();
+                SetRecipe(goalIngrendients);
+
+                //StartCoroutine(GenerateGoalIngredientsCoroutine());
 
                 break;
 
@@ -122,13 +129,70 @@ public class GameManager : MonoBehaviour
         
     }
 
+    IEnumerator GenerateGoalIngredientsCoroutine()
+    {
+        while (true)
+        {
+            GenerateGoalIngredientsList();
+            SetRecipe(goalIngrendients);
+            //PrintIngredientsList(goalIngrendients);
+            yield return new WaitForSeconds(5);
+        }
+    }
+
+    //void PrintIngredientsList(List<IngredientClass> _list)
+    //{
+    //    Debug.Log("New Goal ingredients:");
+    //    foreach(IngredientClass ingredient in _list)
+    //    {
+    //        Debug.Log(ingredient.name);
+    //    }
+    //    Debug.Log(" ----- ");
+    //}
+
+    void SetRecipe(List<IngredientClass> _list)
+    {
+        recipeText.text = "Recipe: ";
+
+        for (int i = 0; i < _list.Count - 1; i++)
+        {
+            recipeText.text += _list[i].name + ", ";
+        }
+        recipeText.text += _list[_list.Count - 1].name + ".";
+
+
+        // TODO: Posar-ho en funcio a part i fer que funcioni segons el numero de la paraula
+
+        recipeText.ForceMeshUpdate();
+
+        for (int i = 10; i < recipeText.textInfo.characterCount; i++)
+        {
+            TMP_CharacterInfo charInfo = recipeText.textInfo.characterInfo[i];
+            int vertexIdx = charInfo.vertexIndex;
+            Color32 targetColor = new Color32(0, 200, 0, 200);
+
+            for (int idx = 0; idx < 4; idx++)
+            {
+                recipeText.textInfo.meshInfo[charInfo.materialReferenceIndex].colors32[charInfo.vertexIndex + idx] = targetColor;
+            }
+        }
+
+        TMP_CharacterInfo charInfo0 = recipeText.textInfo.characterInfo[0];
+        for (int idx = 0; idx < 4; idx++)
+        {
+            recipeText.textInfo.meshInfo[charInfo0.materialReferenceIndex].colors32[charInfo0.vertexIndex + idx] = new Color32(255, 255, 255, 255);
+        }
+
+        recipeText.UpdateVertexData();
+
+
+    }
+
 
    #region INGREDIENTS_LIST_REGION
     private void GenerateGoalIngredientsList()
     {
-        int listMaxRange = fullIngrendientsList.Count - (fullIngrendientsList.Count / 10);
-        if (listMaxRange < 2) 
-            listMaxRange = 2;
+        int listMaxRange = 5;
         int ingredientsNum = Random.RandomRange(1, listMaxRange);
         bool rareCostumer = Random.RandomRange(0, rareCostumerRatio) == 0;
 
@@ -143,6 +207,8 @@ public class GameManager : MonoBehaviour
                     ingredientId = Random.RandomRange(0, fullIngrendientsList.Count);
                 } while (!fullIngrendientsList[ingredientId].edible);
             }
+
+            goalIngrendients.Add(fullIngrendientsList[ingredientId]);
         }
 
     }
@@ -150,6 +216,20 @@ public class GameManager : MonoBehaviour
     public List<IngredientClass> GetGoalIngredientsList()
     {
         return goalIngrendients;
+    }
+
+    public bool CheckIfGoalIngredient(string ingredientName)
+    {
+        foreach(IngredientClass ingredient in goalIngrendients)
+        {
+            if (ingredientName == ingredient.name)
+            {
+                //ToDo: Marcar ingredient en verd a la recipe
+                return true;
+            }
+        }
+
+        return false;
     }
 
 

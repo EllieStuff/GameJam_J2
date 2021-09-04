@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 1927052567}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: Game Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c30fb153d266374ca88542b3cac598f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: 0
 --- !u!4 &1927052568
 Transform:
   m_ObjectHideFlags: 0

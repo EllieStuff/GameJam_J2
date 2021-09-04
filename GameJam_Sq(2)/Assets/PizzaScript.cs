@@ -9,6 +9,7 @@ public class PizzaScript : MonoBehaviour
     public List<string> ingredients = new List<string>();
 
     private TextMeshProUGUI ingredientsText;
+    private bool refreshIngredients = true;
 
     // Start is called before the first frame update
     void Start()
@@ -26,9 +27,19 @@ public class PizzaScript : MonoBehaviour
         }
     }
 
+    public void SetRefreshIngredients(bool newState)
+    {
+        refreshIngredients = newState;
+    }
+
+    private bool IsValidIngredient(string colTag)
+    {
+        return colTag != "Untagged" && colTag != "Table" && colTag != "Wall Colliders";
+    }
+
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag != "Untagged" && col.gameObject.tag != "Table" && col.gameObject.tag != "Wall Colliders")
+        if (refreshIngredients && IsValidIngredient(col.gameObject.tag))
         {
             if (!(col.CompareTag("Pan") && ingredients.Contains("Pan")))
             {
@@ -36,15 +47,33 @@ public class PizzaScript : MonoBehaviour
                 RefreshText();
             }
         }
+
+        //if (col.gameObject.tag != "Untagged" && col.gameObject.tag != "Table" && col.gameObject.tag != "Wall Colliders")
+        //{
+        //    if (!(col.CompareTag("Pan") && ingredients.Contains("Pan")))
+        //    {
+        //        ingredients.Add(col.gameObject.tag);
+        //        RefreshText();
+        //    }
+        //}
     }
 
     private void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.tag != "Untagged" && col.gameObject.tag != "Table")
+        if (refreshIngredients && IsValidIngredient(col.gameObject.tag))
         {
-            ingredients.Remove(col.gameObject.tag);
-            RefreshText();
+            if (!(col.CompareTag("Pan") && ingredients.Contains("Pan")))
+            {
+                ingredients.Remove(col.gameObject.tag);
+                RefreshText();
+            }
         }
+
+        //if (col.gameObject.tag != "Untagged" && col.gameObject.tag != "Table")
+        //{
+        //    ingredients.Remove(col.gameObject.tag);
+        //    RefreshText();
+        //}
     }
 
 }

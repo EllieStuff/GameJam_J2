@@ -35,6 +35,7 @@ public class DeliverMenu : MonoBehaviour
     public void LoadDeliveryMenu()
     {
         camera.cameraPosition = Const.CameraPositions.FURNANCE;
+        GameObject.FindGameObjectWithTag("Pizza").GetComponent<PizzaScript>().SetRefreshIngredients(false);
         //Time.timeScale = 0f;
     }
 
