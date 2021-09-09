@@ -26,7 +26,7 @@ public class HandRayCast : MonoBehaviour
         RaycastHit hit;
         if(!itemCatched && Input.GetKeyDown(Const.MOUSE_LEFT_BUTTON) && Physics.Raycast(transform.position, Vector3.down, out hit, 5))
         {
-            Debug.Log(hit.collider.tag);
+            //Debug.Log(hit.collider.tag);
             if (hit.collider.tag != "Table" && hit.collider.tag != "Untagged")
             {
                 itemCatched = true;

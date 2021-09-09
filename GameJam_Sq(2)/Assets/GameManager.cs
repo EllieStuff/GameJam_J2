@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
     };
 
     private TextMeshProUGUI recipeText;
+    private List<Utils.TMProName> namesToChange;
 
     private void Awake()
     {
@@ -152,38 +153,80 @@ public class GameManager : MonoBehaviour
 
     void SetRecipe(List<IngredientClass> _list)
     {
+        // ToDo: Averiguar porque verga se pinta solo el Recipe y a veces >:(((
+
         recipeText.text = "Recipe: ";
 
+        //int currWordsAmmount = 1;
+        namesToChange = new List<Utils.TMProName>(_list.Count);
         for (int i = 0; i < _list.Count - 1; i++)
         {
+
+            if (i == 1)
+            {
+                int wordsAmmount = Utils.GetWordsAmmount(_list[i].name);
+                namesToChange.Add(new Utils.TMProName(Color.green, wordsAmmount, recipeText.textInfo.wordCount));
+
+                //recipeText.ForceMeshUpdate();
+                //Utils.PaintTMProWords(recipeText, Color.red, currWordsAmmount, currWordsAmmount + lastWordsAmmount);
+                //recipeText.UpdateVertexData();
+            }
+
             recipeText.text += _list[i].name + ", ";
+            //currWordsAmmount += lastWordsAmmount;
         }
         recipeText.text += _list[_list.Count - 1].name + ".";
+
+        recipeText.ForceMeshUpdate();
+        Utils.PaintTMProWords(recipeText, namesToChange);
+        recipeText.UpdateVertexData();
+
+        //recipeText.ForceMeshUpdate();
+        //Utils.PaintTMProChars(recipeText, Color.green, 10, recipeText.textInfo.characterCount);
+        //Utils.PaintTMProWords(recipeText, Color.red, 2, recipeText.textInfo.wordCount - 1);
+        //recipeText.UpdateVertexData();
 
 
         // TODO: Posar-ho en funcio a part i fer que funcioni segons el numero de la paraula
 
-        recipeText.ForceMeshUpdate();
+        //recipeText.ForceMeshUpdate();
 
-        for (int i = 10; i < recipeText.textInfo.characterCount; i++)
-        {
-            TMP_CharacterInfo charInfo = recipeText.textInfo.characterInfo[i];
-            int vertexIdx = charInfo.vertexIndex;
-            Color32 targetColor = new Color32(0, 200, 0, 200);
+        ////for (int i = 7; i < recipeText.textInfo.characterCount; i++)
+        ////{
+        ////TMP_CharacterInfo charInfo = recipeText.textInfo.characterInfo[i];
+        ////int vertexIdx = charInfo.vertexIndex;
+        ////Color32 targetColor = new Color32(0, 200, 0, 200);
 
-            for (int idx = 0; idx < 4; idx++)
-            {
-                recipeText.textInfo.meshInfo[charInfo.materialReferenceIndex].colors32[charInfo.vertexIndex + idx] = targetColor;
-            }
-        }
+        ////for (int idx = 0; idx < 4; idx++)
+        ////{
+        ////    recipeText.textInfo.meshInfo[charInfo.materialReferenceIndex].colors32[charInfo.vertexIndex + idx] = targetColor;
+        ////}
 
-        TMP_CharacterInfo charInfo0 = recipeText.textInfo.characterInfo[0];
-        for (int idx = 0; idx < 4; idx++)
-        {
-            recipeText.textInfo.meshInfo[charInfo0.materialReferenceIndex].colors32[charInfo0.vertexIndex + idx] = new Color32(255, 255, 255, 255);
-        }
+        ////}
 
-        recipeText.UpdateVertexData();
+        ////TMP_CharacterInfo charInfo0 = recipeText.textInfo.characterInfo[0];
+        ////for (int idx = 0; idx < 4; idx++)
+        ////{
+        ////    recipeText.textInfo.meshInfo[charInfo0.materialReferenceIndex].colors32[charInfo0.vertexIndex + idx] = new Color32(255, 255, 255, 255);
+        ////}
+
+        //for (int i = 1; i < recipeText.textInfo.wordCount; i++)
+        //{
+        //    TMP_WordInfo wordInfo = recipeText.textInfo.wordInfo[i];
+        //    Color32 targetColor = new Color32(0, 200, 0, 200);
+        //    for (int j = 0; j < wordInfo.characterCount; j++)
+        //    {
+        //        TMP_CharacterInfo charInfo = recipeText.textInfo.characterInfo[wordInfo.firstCharacterIndex + j];
+        //        int vertexIdx = charInfo.vertexIndex;
+
+        //        for (int idx = 0; idx < 4; idx++)
+        //        {
+        //            recipeText.textInfo.meshInfo[charInfo.materialReferenceIndex].colors32[charInfo.vertexIndex + idx] = targetColor;
+        //        }
+        //    }
+        //}
+
+        //recipeText.UpdateVertexData();
 
 
     }
