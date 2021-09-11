@@ -158,14 +158,15 @@ public class GameManager : MonoBehaviour
         recipeText.text = "Recipe: ";
 
         //int currWordsAmmount = 1;
-        namesToChange = new List<Utils.TMProName>(_list.Count);
+        namesToChange = new List<Utils.TMProName>();
+        int totalWordsAmmount = Utils.GetWordsAmmount(recipeText.text) - 1;
+        int nameWordsAmmount;
         for (int i = 0; i < _list.Count - 1; i++)
         {
-
-            if (i == 1)
+            if (i == 0)
             {
-                int wordsAmmount = Utils.GetWordsAmmount(_list[i].name);
-                namesToChange.Add(new Utils.TMProName(Color.green, wordsAmmount, recipeText.textInfo.wordCount));
+                nameWordsAmmount = Utils.GetWordsAmmount(_list[i].name);
+                namesToChange.Add(new Utils.TMProName(Color.green, nameWordsAmmount, totalWordsAmmount));
 
                 //recipeText.ForceMeshUpdate();
                 //Utils.PaintTMProWords(recipeText, Color.red, currWordsAmmount, currWordsAmmount + lastWordsAmmount);
@@ -173,9 +174,13 @@ public class GameManager : MonoBehaviour
             }
 
             recipeText.text += _list[i].name + ", ";
+            totalWordsAmmount = Utils.GetWordsAmmount(recipeText.text) - 1;
             //currWordsAmmount += lastWordsAmmount;
         }
+        nameWordsAmmount = Utils.GetWordsAmmount(_list[_list.Count - 1].name);
+        namesToChange.Add(new Utils.TMProName(Color.green, nameWordsAmmount, totalWordsAmmount));
         recipeText.text += _list[_list.Count - 1].name + ".";
+
 
         recipeText.ForceMeshUpdate();
         Utils.PaintTMProWords(recipeText, namesToChange);
@@ -236,7 +241,7 @@ public class GameManager : MonoBehaviour
     private void GenerateGoalIngredientsList()
     {
         int listMaxRange = 5;
-        int ingredientsNum = Random.RandomRange(1, listMaxRange);
+        int ingredientsNum = 5; //Random.RandomRange(1, listMaxRange);
         bool rareCostumer = Random.RandomRange(0, rareCostumerRatio) == 0;
 
         goalIngrendients = new List<IngredientClass>(ingredientsNum);

@@ -117,15 +117,18 @@ public static class Utils
         //if (_from >= 0 && _to <= _text.textInfo.wordCount)
         for (int i = 0; i < _namesToChange.Count; i++)
         {
-            TMP_WordInfo wordInfo = _text.textInfo.wordInfo[_namesToChange[i].firstWordIdx];
-            for (int j = 0; j < wordInfo.characterCount; j++)
+            for (int j = 0; j < _namesToChange[i].numOfWords; j++)
             {
-                TMP_CharacterInfo charInfo = _text.textInfo.characterInfo[wordInfo.firstCharacterIndex + j];
-                int vertexIdx = charInfo.vertexIndex;
-
-                for (int idx = 0; idx < 4; idx++)
+                TMP_WordInfo wordInfo = _text.textInfo.wordInfo[_namesToChange[i].firstWordIdx + j];
+                for (int k = 0; k < wordInfo.characterCount; k++)
                 {
-                    _text.textInfo.meshInfo[charInfo.materialReferenceIndex].colors32[charInfo.vertexIndex + idx] = _namesToChange[i].color;
+                    TMP_CharacterInfo charInfo = _text.textInfo.characterInfo[wordInfo.firstCharacterIndex + k];
+                    int vertexIdx = charInfo.vertexIndex;
+
+                    for (int idx = 0; idx < 4; idx++)
+                    {
+                        _text.textInfo.meshInfo[charInfo.materialReferenceIndex].colors32[charInfo.vertexIndex + idx] = _namesToChange[i].color;
+                    }
                 }
             }
         }
