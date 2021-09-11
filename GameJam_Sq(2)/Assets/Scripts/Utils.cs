@@ -7,11 +7,16 @@ public static class Utils
 {
     public struct TMProName
     {
+        public string name;
         public Color32 color;
         public int numOfWords;
         public int firstWordIdx;
-        public TMProName(Color32 _color, int _numOfWords, int _firstWordIdx) 
-            { color = _color; numOfWords = _numOfWords; firstWordIdx = _firstWordIdx; }
+        public TMProName(string _name, Color32 _color, int _numOfWords, int _firstWordIdx) 
+            { name = _name;  color = _color; numOfWords = _numOfWords; firstWordIdx = _firstWordIdx; }
+        public void SetFirstWordIdx(int _idx)
+        {
+            firstWordIdx = _idx;
+        }
          
     }
     public struct TMProWord
@@ -141,8 +146,31 @@ public static class Utils
 
     public static int GetWordsAmmount(string _text)
     {
+        string[] tmpText = _text.Split();
 
-        return _text.Split().Length;
+        if (tmpText[tmpText.Length - 1] == "")
+            return tmpText.Length - 1;
+        else
+            return tmpText.Length;
+    }
+    public static int GetWordsAmmount(string[] _text)
+    {
+        int totalAmmount = 0;
+        if(_text[0] != "Plate")
+        {
+            int a = 0;
+        }
+        for (int i = 0; i < _text.Length; i++)
+        {
+            string[] tmpText = _text[i].Split();
+
+            if (tmpText[tmpText.Length - 1] == "")
+                totalAmmount += tmpText.Length - 1;
+            else
+                totalAmmount += tmpText.Length;
+        }
+
+        return totalAmmount;
     }
 
 

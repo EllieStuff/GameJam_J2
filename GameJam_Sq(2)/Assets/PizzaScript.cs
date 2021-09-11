@@ -10,11 +10,14 @@ public class PizzaScript : MonoBehaviour
 
     private TextMeshProUGUI ingredientsText;
     private bool refreshIngredients = true;
+    private GameManager gameManager;
+    private List<Utils.TMProName> namesToChange = new List<Utils.TMProName>();
 
     // Start is called before the first frame update
     void Start()
     {
         ingredientsText = GameObject.Find("Pizza_Ingredients_Text").GetComponent<TextMeshProUGUI>();
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
     }
     
 
@@ -25,6 +28,12 @@ public class PizzaScript : MonoBehaviour
         {
             ingredientsText.text += "- " + ingredient + "<br>";
         }
+
+        // ToDo: Mirar perque surt dels limits de l'array quan poses algun ingredient aqui
+
+        //ingredientsText.ForceMeshUpdate();
+        //Utils.PaintTMProWords(ingredientsText, namesToChange);
+        //ingredientsText.UpdateVertexData();
     }
 
     public void SetRefreshIngredients(bool newState)
@@ -37,13 +46,62 @@ public class PizzaScript : MonoBehaviour
         return colTag != "Untagged" && colTag != "Table" && colTag != "Wall Colliders";
     }
 
+    public List<string> GetCurrIngredients()
+    {
+        return ingredients;
+    }
+
+
+    public void EraseNameToChange(string nameToErase)
+    {
+        bool erased = false;
+        int nameToEraseLength = nameToErase.Split().Length;
+
+        for(int i = 0; i < namesToChange.Count; i++)
+        {
+            if (!erased)
+            {
+                if(namesToChange[i].name == nameToErase)
+                {
+                    erased = true;
+                    namesToChange.RemoveAt(i);
+
+                    if (i < namesToChange.Count)
+                        namesToChange[i].SetFirstWordIdx(namesToChange[i].firstWordIdx - nameToEraseLength);
+                }
+            }
+            else
+            {
+                namesToChange[i].SetFirstWordIdx(namesToChange[i].firstWordIdx - nameToEraseLength);
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider col)
     {
         if (refreshIngredients && IsValidIngredient(col.gameObject.tag))
         {
             if (!(col.CompareTag("Pan") && ingredients.Contains("Pan")))
             {
-                ingredients.Add(col.gameObject.tag);
+                string currIngredientName = col.gameObject.tag;
+                ingredients.Add(currIngredientName);
+
+                //for (int i = 0; i < gameManager.GetGoalIngredientsList().Count; i++)
+                //{
+                //    int totalWordsAmmount = Utils.GetWordsAmmount(ingredients.ToArray());
+                //    int nameWordsAmmount = Utils.GetWordsAmmount(currIngredientName);
+
+                //    if (gameManager.CheckIfGoalIngredient(currIngredientName))
+                //    {
+                //        namesToChange.Add(new Utils.TMProName(currIngredientName, Color.green, nameWordsAmmount, totalWordsAmmount + i));
+                //    }
+                //    else
+                //    {
+                //        namesToChange.Add(new Utils.TMProName(currIngredientName, Color.red, nameWordsAmmount, totalWordsAmmount + i));
+                //    }
+
+                //}
+
                 RefreshText();
             }
         }
@@ -64,7 +122,10 @@ public class PizzaScript : MonoBehaviour
         {
             if (!(col.CompareTag("Pan") && ingredients.Contains("Pan")))
             {
-                ingredients.Remove(col.gameObject.tag);
+                string currIngredientName = col.gameObject.tag;
+                ingredients.Remove(currIngredientName);
+                //EraseNameToChange(currIngredientName);
+
                 RefreshText();
             }
         }

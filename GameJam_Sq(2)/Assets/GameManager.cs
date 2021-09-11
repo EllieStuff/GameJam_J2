@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
 
     private TextMeshProUGUI recipeText;
     private List<Utils.TMProName> namesToChange;
+    private PizzaScript pizzaScript;
 
     private void Awake()
     {
@@ -110,6 +111,7 @@ public class GameManager : MonoBehaviour
 
             case Const.GameState.PLAYING:
                 recipeText = GameObject.Find("Pizza_Recipe_Text").GetComponent<TextMeshProUGUI>();
+                pizzaScript = GameObject.FindGameObjectWithTag("Pizza").GetComponent<PizzaScript>();
                 GenerateGoalIngredientsList();
                 SetRecipe(goalIngrendients);
 
@@ -127,7 +129,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        RefreshRecipe(goalIngrendients);
     }
 
     IEnumerator GenerateGoalIngredientsCoroutine()
@@ -153,86 +155,66 @@ public class GameManager : MonoBehaviour
 
     void SetRecipe(List<IngredientClass> _list)
     {
-        // ToDo: Averiguar porque verga se pinta solo el Recipe y a veces >:(((
-
         recipeText.text = "Recipe: ";
 
-        //int currWordsAmmount = 1;
-        namesToChange = new List<Utils.TMProName>();
-        int totalWordsAmmount = Utils.GetWordsAmmount(recipeText.text) - 1;
-        int nameWordsAmmount;
+        //namesToChange = new List<Utils.TMProName>();
+        //int totalWordsAmmount = Utils.GetWordsAmmount(recipeText.text);
+        //int nameWordsAmmount;
         for (int i = 0; i < _list.Count - 1; i++)
         {
-            if (i == 0)
-            {
-                nameWordsAmmount = Utils.GetWordsAmmount(_list[i].name);
-                namesToChange.Add(new Utils.TMProName(Color.green, nameWordsAmmount, totalWordsAmmount));
-
-                //recipeText.ForceMeshUpdate();
-                //Utils.PaintTMProWords(recipeText, Color.red, currWordsAmmount, currWordsAmmount + lastWordsAmmount);
-                //recipeText.UpdateVertexData();
-            }
+            //if (i == 0)
+            //{
+            //    nameWordsAmmount = Utils.GetWordsAmmount(_list[i].name);
+            //    namesToChange.Add(new Utils.TMProName(Color.green, nameWordsAmmount, totalWordsAmmount));
+            //}
 
             recipeText.text += _list[i].name + ", ";
-            totalWordsAmmount = Utils.GetWordsAmmount(recipeText.text) - 1;
-            //currWordsAmmount += lastWordsAmmount;
+            //totalWordsAmmount = Utils.GetWordsAmmount(recipeText.text);
         }
-        nameWordsAmmount = Utils.GetWordsAmmount(_list[_list.Count - 1].name);
-        namesToChange.Add(new Utils.TMProName(Color.green, nameWordsAmmount, totalWordsAmmount));
+        //nameWordsAmmount = Utils.GetWordsAmmount(_list[_list.Count - 1].name);
+        //namesToChange.Add(new Utils.TMProName(Color.green, nameWordsAmmount, totalWordsAmmount));
         recipeText.text += _list[_list.Count - 1].name + ".";
+
+
+        //recipeText.ForceMeshUpdate();
+        //Utils.PaintTMProWords(recipeText, namesToChange);
+        //recipeText.UpdateVertexData();
+
+    }
+
+    private void RefreshRecipe(List<IngredientClass> _goalList)
+    {
+        recipeText.text = "Recipe: ";
+
+        namesToChange = new List<Utils.TMProName>();
+        string currIngredientName;
+        int totalWordsAmmount = Utils.GetWordsAmmount(recipeText.text);
+        int nameWordsAmmount;
+        for (int i = 0; i < _goalList.Count - 1; i++)
+        {
+            currIngredientName = _goalList[i].name;
+            if (CheckIfCurrIngredient(currIngredientName))
+            {
+                nameWordsAmmount = Utils.GetWordsAmmount(currIngredientName);
+                namesToChange.Add(new Utils.TMProName(currIngredientName, Color.green, nameWordsAmmount, totalWordsAmmount));
+            }
+
+            recipeText.text += currIngredientName + ", ";
+            totalWordsAmmount = Utils.GetWordsAmmount(recipeText.text);
+        }
+
+        currIngredientName = _goalList[_goalList.Count - 1].name;
+        if (CheckIfCurrIngredient(currIngredientName))
+        {
+            nameWordsAmmount = Utils.GetWordsAmmount(currIngredientName);
+            namesToChange.Add(new Utils.TMProName(currIngredientName, Color.green, nameWordsAmmount, totalWordsAmmount));
+        }
+        recipeText.text += currIngredientName + ".";
 
 
         recipeText.ForceMeshUpdate();
         Utils.PaintTMProWords(recipeText, namesToChange);
         recipeText.UpdateVertexData();
-
-        //recipeText.ForceMeshUpdate();
-        //Utils.PaintTMProChars(recipeText, Color.green, 10, recipeText.textInfo.characterCount);
-        //Utils.PaintTMProWords(recipeText, Color.red, 2, recipeText.textInfo.wordCount - 1);
-        //recipeText.UpdateVertexData();
-
-
-        // TODO: Posar-ho en funcio a part i fer que funcioni segons el numero de la paraula
-
-        //recipeText.ForceMeshUpdate();
-
-        ////for (int i = 7; i < recipeText.textInfo.characterCount; i++)
-        ////{
-        ////TMP_CharacterInfo charInfo = recipeText.textInfo.characterInfo[i];
-        ////int vertexIdx = charInfo.vertexIndex;
-        ////Color32 targetColor = new Color32(0, 200, 0, 200);
-
-        ////for (int idx = 0; idx < 4; idx++)
-        ////{
-        ////    recipeText.textInfo.meshInfo[charInfo.materialReferenceIndex].colors32[charInfo.vertexIndex + idx] = targetColor;
-        ////}
-
-        ////}
-
-        ////TMP_CharacterInfo charInfo0 = recipeText.textInfo.characterInfo[0];
-        ////for (int idx = 0; idx < 4; idx++)
-        ////{
-        ////    recipeText.textInfo.meshInfo[charInfo0.materialReferenceIndex].colors32[charInfo0.vertexIndex + idx] = new Color32(255, 255, 255, 255);
-        ////}
-
-        //for (int i = 1; i < recipeText.textInfo.wordCount; i++)
-        //{
-        //    TMP_WordInfo wordInfo = recipeText.textInfo.wordInfo[i];
-        //    Color32 targetColor = new Color32(0, 200, 0, 200);
-        //    for (int j = 0; j < wordInfo.characterCount; j++)
-        //    {
-        //        TMP_CharacterInfo charInfo = recipeText.textInfo.characterInfo[wordInfo.firstCharacterIndex + j];
-        //        int vertexIdx = charInfo.vertexIndex;
-
-        //        for (int idx = 0; idx < 4; idx++)
-        //        {
-        //            recipeText.textInfo.meshInfo[charInfo.materialReferenceIndex].colors32[charInfo.vertexIndex + idx] = targetColor;
-        //        }
-        //    }
-        //}
-
-        //recipeText.UpdateVertexData();
-
 
     }
 
@@ -241,7 +223,7 @@ public class GameManager : MonoBehaviour
     private void GenerateGoalIngredientsList()
     {
         int listMaxRange = 5;
-        int ingredientsNum = 5; //Random.RandomRange(1, listMaxRange);
+        int ingredientsNum = Random.RandomRange(1, listMaxRange);
         bool rareCostumer = Random.RandomRange(0, rareCostumerRatio) == 0;
 
         goalIngrendients = new List<IngredientClass>(ingredientsNum);
@@ -266,13 +248,26 @@ public class GameManager : MonoBehaviour
         return goalIngrendients;
     }
 
-    public bool CheckIfGoalIngredient(string ingredientName)
+    public bool CheckIfGoalIngredient(string _ingredientName)
     {
         foreach(IngredientClass ingredient in goalIngrendients)
         {
-            if (ingredientName == ingredient.name)
+            if (_ingredientName == ingredient.name)
             {
-                //ToDo: Marcar ingredient en verd a la recipe
+                //ToDo: Marcar ingredient en verd a la currIngredientsList
+                return true;
+            }
+        }
+
+        return false;
+    }
+    public bool CheckIfCurrIngredient(string _ingredientName)
+    {
+        foreach (string ingredientName in pizzaScript.GetCurrIngredients())
+        {
+            if (_ingredientName == ingredientName)
+            {
+                //ToDo: Marcar ingredient en verd a la goalList
                 return true;
             }
         }
@@ -281,10 +276,10 @@ public class GameManager : MonoBehaviour
     }
 
 
-   #endregion
+    #endregion
 
 
-   #region SCORE_REGION
+    #region SCORE_REGION
     public float CalculateCurrSatifaction(List<string> finalIngredients)
     {
         float tmpScore = 0.0f;
