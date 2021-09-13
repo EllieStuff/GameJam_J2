@@ -130,7 +130,7 @@ public class PizzaScript : MonoBehaviour
         //    }
         //}
 
-        if (col.gameObject.tag != "Untagged" && col.gameObject.tag != "Table")
+        if (refreshIngredients && col.gameObject.tag != "Untagged" && col.gameObject.tag != "Table")
         {
             ingredients.Remove(col.gameObject.tag);
             RefreshText();

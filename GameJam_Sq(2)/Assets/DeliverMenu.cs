@@ -7,9 +7,7 @@ public class DeliverMenu : MonoBehaviour
 {
     private MoveCamera camera;
 
-    //public static bool gameIsPaused = false;
-
-    //public GameObject pauseMenuUI;
+    //public GameObject standartUI;
 
     // Update is called once per frame
 
@@ -34,9 +32,16 @@ public class DeliverMenu : MonoBehaviour
 
     public void LoadDeliveryMenu()
     {
+        //standartUI.SetActive(false);
         camera.cameraPosition = Const.CameraPositions.FURNANCE;
         GameObject.FindGameObjectWithTag("Pizza").GetComponent<PizzaScript>().SetRefreshIngredients(false);
         //Time.timeScale = 0f;
+    }
+
+    public void UnloadDeliveryMenu()
+    {
+        camera.cameraPosition = Const.CameraPositions.TABLE;
+        GameObject.FindGameObjectWithTag("Pizza").GetComponent<PizzaScript>().SetRefreshIngredients(true);
     }
 
     public void RestartScene()

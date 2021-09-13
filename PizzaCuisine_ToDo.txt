@@ -1,0 +1,7 @@
+
+ToDo:
+ - Puntuacio
+ - Feedback en ingredients dolents
+ - Indicar quin ingredient has agafat (si es amb audio millor)
+ - Arreglar bug de que no troba el TMProUgui al reiniciar
+ - Fer que no pugui apareixer dos vegades el mateix ingredient a la recipe

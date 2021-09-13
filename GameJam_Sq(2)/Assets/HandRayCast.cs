@@ -26,47 +26,51 @@ public class HandRayCast : MonoBehaviour
         //Vector3 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //transform.position = new Vector3(newPos.x - bodyScript.edge.z, newPos.y, newPos.z - bodyScript.edge.z);
 
-        RaycastHit hit;
-        if(!itemCatched && Physics.Raycast(transform.position, Vector3.down, out hit, 5))
+        if (Time.timeScale > 0)
         {
-            //Debug.Log(hit.collider.tag);
-            if (hit.collider.tag != "Table" && hit.collider.tag != "Untagged")
+            RaycastHit hit;
+            if (!itemCatched && Physics.Raycast(transform.position, Vector3.down, out hit, 5))
             {
-                if (lastHandAboveItem != hit.collider.gameObject)
+                //Debug.Log(hit.collider.tag);
+                if (hit.collider.tag != "Table" && hit.collider.tag != "Untagged")
                 {
-                    if(lastHandAboveItem != null)
+                    if (lastHandAboveItem != hit.collider.gameObject)
+                    {
+                        if (lastHandAboveItem != null)
+                            lastHandAboveItem.GetComponent<Outline>().enabled = false;
+                        lastHandAboveItem = hit.collider.gameObject;
+                        lastHandAboveItem.GetComponent<Outline>().enabled = true;
+                    }
+
+                    if (Input.GetKeyDown(Const.MOUSE_LEFT_BUTTON))
+                    {
+                        itemCatched = true;
+                        currentItem = hit.collider.gameObject;
+                    }
+                }
+                else
+                {
+                    if (lastHandAboveItem != null)
+                    {
                         lastHandAboveItem.GetComponent<Outline>().enabled = false;
-                    lastHandAboveItem = hit.collider.gameObject;
-                    lastHandAboveItem.GetComponent<Outline>().enabled = true;
+                        lastHandAboveItem = null;
+                    }
                 }
-                
-                if (Input.GetKeyDown(Const.MOUSE_LEFT_BUTTON))
-                {
-                    itemCatched = true;
-                    currentItem = hit.collider.gameObject;
-                }
+
             }
-            else
+            else if (itemCatched && Input.GetKeyUp(Const.MOUSE_LEFT_BUTTON))
             {
-                if(lastHandAboveItem != null)
-                {
-                    lastHandAboveItem.GetComponent<Outline>().enabled = false;
-                    lastHandAboveItem = null;
-                }
+                itemCatched = false;
+                //currentItem.GetComponent<Outline>().enabled = false;
+                currentItem.GetComponent<Rigidbody>().useGravity = true;
+                currentItem = null;
+            }
+            else if (itemCatched && Input.GetKey(Const.MOUSE_LEFT_BUTTON))
+            {
+                currentItem.transform.position = transform.position;
+                currentItem.GetComponent<Rigidbody>().useGravity = false;
             }
 
-        }
-        else if(itemCatched && Input.GetKeyUp(Const.MOUSE_LEFT_BUTTON))
-        {
-            itemCatched = false;
-            //currentItem.GetComponent<Outline>().enabled = false;
-            currentItem.GetComponent<Rigidbody>().useGravity = true;
-            currentItem = null;
-        }
-        else if(itemCatched && Input.GetKey(Const.MOUSE_LEFT_BUTTON))
-        {
-            currentItem.transform.position = transform.position;
-            currentItem.GetComponent<Rigidbody>().useGravity = false;
         }
 
     }
