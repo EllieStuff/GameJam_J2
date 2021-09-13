@@ -429,6 +429,24 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 2c2f009d66b8e2d4ebcb46ca8e73d354, type: 3}
+--- !u!114 &196709619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196709613}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &224635239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1710,6 +1728,24 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: f6c0da0ba5de33b4b9547f2cca90a5fd, type: 3}
+--- !u!114 &758431830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758431824}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &831927596 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7815406406739115351, guid: 5617807746c8dd54ea0e2d65ed1826db,
@@ -1851,6 +1887,7 @@ GameObject:
   - component: {fileID: 961790267}
   - component: {fileID: 961790266}
   - component: {fileID: 961790268}
+  - component: {fileID: 961790269}
   m_Layer: 0
   m_Name: Pizza
   m_TagString: Pizza
@@ -1935,7 +1972,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 48
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!64 &961790266
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1976,6 +2013,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredients: []
+--- !u!114 &961790269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961790261}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &980289296 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5101578511858660595, guid: 6fefd99ff0d24a442b3d976a42dfb977,
@@ -2316,6 +2371,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.97558075, y: 0.05431349, z: 1.599195}
   m_Center: {x: -0.00000011920929, y: -9.313226e-10, z: -0.00536722}
+--- !u!114 &1016399134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016399128}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &1028496744 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3268698634914542446, guid: d8a89bd03f23c1a459f98470fb4774d5,
@@ -4273,6 +4346,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &1717457048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717457041}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1724530433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5164,7 +5255,7 @@ PrefabInstance:
     - target: {fileID: 738714147994888528, guid: 4e04311f2d6249a4b8425675824ec999,
         type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 738714147994888531, guid: 4e04311f2d6249a4b8425675824ec999,
         type: 3}
@@ -5238,7 +5329,7 @@ PrefabInstance:
     - target: {fileID: 806019180148744765, guid: b26243b387912514d93ede8767588012,
         type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 806019180148744766, guid: b26243b387912514d93ede8767588012,
         type: 3}
@@ -5529,7 +5620,7 @@ PrefabInstance:
     - target: {fileID: 1372104458705659721, guid: 95f6b3852ee7b4b45b4f5d83b0e7549d,
         type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95f6b3852ee7b4b45b4f5d83b0e7549d, type: 3}
@@ -5603,7 +5694,7 @@ PrefabInstance:
     - target: {fileID: 1398538543355073877, guid: e7199852ed7014948a32f2c66451003e,
         type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7199852ed7014948a32f2c66451003e, type: 3}
@@ -6316,7 +6407,7 @@ PrefabInstance:
     - target: {fileID: 2960199888253215870, guid: 49b0ab9bc8ffbf34d9d07283b4c9ba6c,
         type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49b0ab9bc8ffbf34d9d07283b4c9ba6c, type: 3}
@@ -6390,7 +6481,7 @@ PrefabInstance:
     - target: {fileID: 2973683794675774583, guid: d94cd7c48b127ef4297023775ae27aab,
         type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d94cd7c48b127ef4297023775ae27aab, type: 3}
@@ -6882,7 +6973,7 @@ PrefabInstance:
     - target: {fileID: 3678770949406191651, guid: a092934fa1e1ab04cba8f89c7908b170,
         type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3678770949406191662, guid: a092934fa1e1ab04cba8f89c7908b170,
         type: 3}
@@ -8244,7 +8335,7 @@ PrefabInstance:
     - target: {fileID: 6418273752357317326, guid: 9e0b80ea40414d0438fdec7d00c8829d,
         type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6418273752357317362, guid: 9e0b80ea40414d0438fdec7d00c8829d,
         type: 3}
@@ -9675,7 +9766,7 @@ PrefabInstance:
     - target: {fileID: 8863195851682272684, guid: 4e032ac512bb13b45ababc7328cda284,
         type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8863195851682272686, guid: 4e032ac512bb13b45ababc7328cda284,
         type: 3}

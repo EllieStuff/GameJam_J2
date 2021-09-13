@@ -118,23 +118,23 @@ public class PizzaScript : MonoBehaviour
 
     private void OnTriggerExit(Collider col)
     {
-        if (refreshIngredients && IsValidIngredient(col.gameObject.tag))
-        {
-            if (!(col.CompareTag("Pan") && ingredients.Contains("Pan")))
-            {
-                string currIngredientName = col.gameObject.tag;
-                ingredients.Remove(currIngredientName);
-                //EraseNameToChange(currIngredientName);
-
-                RefreshText();
-            }
-        }
-
-        //if (col.gameObject.tag != "Untagged" && col.gameObject.tag != "Table")
+        //if (refreshIngredients && IsValidIngredient(col.gameObject.tag))
         //{
-        //    ingredients.Remove(col.gameObject.tag);
-        //    RefreshText();
+        //    if (!(col.CompareTag("Pan") && ingredients.Contains("Pan")))
+        //    {
+        //        string currIngredientName = col.gameObject.tag;
+        //        ingredients.Remove(currIngredientName);
+        //        //EraseNameToChange(currIngredientName);
+
+        //        RefreshText();
+        //    }
         //}
+
+        if (col.gameObject.tag != "Untagged" && col.gameObject.tag != "Table")
+        {
+            ingredients.Remove(col.gameObject.tag);
+            RefreshText();
+        }
     }
 
 }

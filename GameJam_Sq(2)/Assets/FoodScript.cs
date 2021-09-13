@@ -14,11 +14,18 @@ public class FoodScript : MonoBehaviour
     private bool cooking = false;
     private bool chopping = false;
     const float edge = 2;
+    private Outline outline;
 
 
     private void Start()
     {
         kitchen = GameObject.Find("Kitchen_Items");
+
+        outline = gameObject.AddComponent<Outline>();
+        outline.OutlineMode = Outline.Mode.OutlineAll;
+        outline.OutlineColor = Color.black;
+        outline.OutlineWidth = 10f;
+        outline.enabled = false;
     }
 
     private void Update()
@@ -48,6 +55,11 @@ public class FoodScript : MonoBehaviour
                 kitchen.transform);
         }
     }
+
+    //public void EnableOutline(bool _enabled)
+    //{
+    //    outline.enabled = _enabled;
+    //}
 
 
     private void OnTriggerEnter(Collider col)
