@@ -1708,7 +1708,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -72.729004, y: -0.000015258789}
+  m_AnchoredPosition: {x: -74, y: -121}
   m_SizeDelta: {x: -205.95566, y: -404.81973}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &632809178
@@ -2574,7 +2574,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -199, y: 44.098}
+  m_AnchoredPosition: {x: -200.27101, y: -76.90198}
   m_SizeDelta: {x: -458.49854, y: -406.84006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1666246990
@@ -3472,7 +3472,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 109.72}
-  m_SizeDelta: {x: -24.124756, y: -414.9214}
+  m_SizeDelta: {x: -24.124756, y: -414.9228}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2120818483
 MonoBehaviour:
@@ -3493,10 +3493,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Videogame created by Joel Mateu Gallardo & Joel Romero bru
-
-
-'
+  m_text: "Videogame created by: \n      Joel Mateu Gallardo \n          & \n     
+    Joel Romero Bru\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 190cd7d86331c494d8afbb4be0fa2eb6, type: 2}
   m_sharedMaterial: {fileID: -7637989514037053632, guid: 190cd7d86331c494d8afbb4be0fa2eb6,
@@ -3526,24 +3524,24 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 8194
+  m_textAlignment: 8193
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 5
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 55
+  m_firstOverflowCharacterIndex: 23
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -3567,18 +3565,18 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2120818483}
-    characterCount: 60
+    characterCount: 86
     spriteCount: 0
-    spaceCount: 11
+    spaceCount: 36
     wordCount: 9
     linkCount: 0
-    lineCount: 3
+    lineCount: 5
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}

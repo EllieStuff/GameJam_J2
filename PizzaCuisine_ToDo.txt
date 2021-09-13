@@ -5,3 +5,5 @@ ToDo:
  - Indicar quin ingredient has agafat (si es amb audio millor)
  - Arreglar bug de que no troba el TMProUgui al reiniciar
  - Fer que no pugui apareixer dos vegades el mateix ingredient a la recipe
+
+ - IDEA: Fer que la maxScore es decideixi pel numero de rondes que aguantes per sobre de les 2.5 estrelles
