@@ -7,8 +7,8 @@ public class FollowMouse : MonoBehaviour
     public Vector3 edge = Vector3.zero;
     public float speed = 1;
 
-    const float MAX_X = 0.3f;
-    const float MIN_X = -1f;
+    const float MAX_X = 0.4f;
+    const float MIN_X = -1.1f;
     const float MAX_Z = 1;
     const float MIN_Z = -1.9f;
 

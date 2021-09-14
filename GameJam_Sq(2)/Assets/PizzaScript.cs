@@ -41,7 +41,12 @@ public class PizzaScript : MonoBehaviour
         refreshIngredients = newState;
     }
 
-    private bool IsValidIngredient(string colTag)
+    public bool GetRefreshIngredients()
+    {
+        return refreshIngredients;
+    }
+
+    public bool IsValidIngredient(string colTag)
     {
         return colTag != "Untagged" && colTag != "Table" && colTag != "Wall Colliders";
     }
@@ -76,65 +81,96 @@ public class PizzaScript : MonoBehaviour
             }
         }
     }
-
-    private void OnTriggerEnter(Collider col)
+    
+    public void AddIngredient(string _ingredientName)
     {
-        if (refreshIngredients && IsValidIngredient(col.gameObject.tag))
-        {
-            if (!(col.CompareTag("Pan") && ingredients.Contains("Pan")))
-            {
-                string currIngredientName = col.gameObject.tag;
-                ingredients.Add(currIngredientName);
+        ingredients.Add(_ingredientName);
 
-                //for (int i = 0; i < gameManager.GetGoalIngredientsList().Count; i++)
-                //{
-                //    int totalWordsAmmount = Utils.GetWordsAmmount(ingredients.ToArray());
-                //    int nameWordsAmmount = Utils.GetWordsAmmount(currIngredientName);
-
-                //    if (gameManager.CheckIfGoalIngredient(currIngredientName))
-                //    {
-                //        namesToChange.Add(new Utils.TMProName(currIngredientName, Color.green, nameWordsAmmount, totalWordsAmmount + i));
-                //    }
-                //    else
-                //    {
-                //        namesToChange.Add(new Utils.TMProName(currIngredientName, Color.red, nameWordsAmmount, totalWordsAmmount + i));
-                //    }
-
-                //}
-
-                RefreshText();
-            }
-        }
-
-        //if (col.gameObject.tag != "Untagged" && col.gameObject.tag != "Table" && col.gameObject.tag != "Wall Colliders")
+        //for (int i = 0; i < gameManager.GetGoalIngredientsList().Count; i++)
         //{
-        //    if (!(col.CompareTag("Pan") && ingredients.Contains("Pan")))
-        //    {
-        //        ingredients.Add(col.gameObject.tag);
-        //        RefreshText();
-        //    }
-        //}
-    }
+        //    int totalWordsAmmount = Utils.GetWordsAmmount(ingredients.ToArray());
+        //    int nameWordsAmmount = Utils.GetWordsAmmount(currIngredientName);
 
-    private void OnTriggerExit(Collider col)
-    {
-        //if (refreshIngredients && IsValidIngredient(col.gameObject.tag))
-        //{
-        //    if (!(col.CompareTag("Pan") && ingredients.Contains("Pan")))
+        //    if (gameManager.CheckIfGoalIngredient(currIngredientName))
         //    {
-        //        string currIngredientName = col.gameObject.tag;
-        //        ingredients.Remove(currIngredientName);
-        //        //EraseNameToChange(currIngredientName);
-
-        //        RefreshText();
+        //        namesToChange.Add(new Utils.TMProName(currIngredientName, Color.green, nameWordsAmmount, totalWordsAmmount + i));
         //    }
+        //    else
+        //    {
+        //        namesToChange.Add(new Utils.TMProName(currIngredientName, Color.red, nameWordsAmmount, totalWordsAmmount + i));
+        //    }
+
         //}
 
-        if (refreshIngredients && col.gameObject.tag != "Untagged" && col.gameObject.tag != "Table")
-        {
-            ingredients.Remove(col.gameObject.tag);
-            RefreshText();
-        }
+        RefreshText();
     }
+
+    public void RemoveIngredient(string _ingredientName)
+    {
+        ingredients.Remove(_ingredientName);
+        RefreshText();
+    }
+
+
+    //private void OnTriggerEnter(Collider col)
+    //{
+    //    if (refreshIngredients && IsValidIngredient(col.gameObject.tag))
+    //    {
+    //        if (!(col.CompareTag("Pan") && ingredients.Contains("Pan")))
+    //        {
+    //            string currIngredientName = col.gameObject.tag;
+    //            ingredients.Add(currIngredientName);
+
+    //            //for (int i = 0; i < gameManager.GetGoalIngredientsList().Count; i++)
+    //            //{
+    //            //    int totalWordsAmmount = Utils.GetWordsAmmount(ingredients.ToArray());
+    //            //    int nameWordsAmmount = Utils.GetWordsAmmount(currIngredientName);
+
+    //            //    if (gameManager.CheckIfGoalIngredient(currIngredientName))
+    //            //    {
+    //            //        namesToChange.Add(new Utils.TMProName(currIngredientName, Color.green, nameWordsAmmount, totalWordsAmmount + i));
+    //            //    }
+    //            //    else
+    //            //    {
+    //            //        namesToChange.Add(new Utils.TMProName(currIngredientName, Color.red, nameWordsAmmount, totalWordsAmmount + i));
+    //            //    }
+
+    //            //}
+
+    //            RefreshText();
+    //        }
+    //    }
+
+    //    //if (col.gameObject.tag != "Untagged" && col.gameObject.tag != "Table" && col.gameObject.tag != "Wall Colliders")
+    //    //{
+    //    //    if (!(col.CompareTag("Pan") && ingredients.Contains("Pan")))
+    //    //    {
+    //    //        ingredients.Add(col.gameObject.tag);
+    //    //        RefreshText();
+    //    //    }
+    //    //}
+    //}
+
+    //private void OnTriggerExit(Collider col)
+    //{
+    //    //if (refreshIngredients && IsValidIngredient(col.gameObject.tag))
+    //    //{
+    //    //    if (!(col.CompareTag("Pan") && ingredients.Contains("Pan")))
+    //    //    {
+    //    //        string currIngredientName = col.gameObject.tag;
+    //    //        ingredients.Remove(currIngredientName);
+    //    //        //EraseNameToChange(currIngredientName);
+
+    //    //        RefreshText();
+    //    //    }
+    //    //}
+
+    //    if (refreshIngredients && col.gameObject.tag != "Untagged" && col.gameObject.tag != "Table")
+    //    {
+    //        ingredients.Remove(col.gameObject.tag);
+    //        RefreshText();
+    //    }
+    //}
+
 
 }

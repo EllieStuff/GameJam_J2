@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using SpeechLib;
 
 public class HandRayCast : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class HandRayCast : MonoBehaviour
     private GameObject currentItem;
     private GameObject lastHandAboveItem = null;
     private bool itemCatched = false;
+    //private SpVoice voice;
 
 
     // Start is called before the first frame update
@@ -16,6 +18,8 @@ public class HandRayCast : MonoBehaviour
     {
         manager = GetComponentInParent<PersonManager>();
         bodyScript = manager.body.GetComponent<FollowMouse>();
+
+        //voice = new SpVoice();
 
     }
 
@@ -46,6 +50,8 @@ public class HandRayCast : MonoBehaviour
                     {
                         itemCatched = true;
                         currentItem = hit.collider.gameObject;
+                        //voice.Voice = voice.GetVoices(string.Empty, string.Empty).Item(0);
+                        //voice.Speak(currentItem.tag);
                     }
                 }
                 else

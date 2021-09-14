@@ -132,16 +132,16 @@ public class GameManager : MonoBehaviour
         RefreshRecipe(goalIngrendients);
     }
 
-    IEnumerator GenerateGoalIngredientsCoroutine()
-    {
-        while (true)
-        {
-            GenerateGoalIngredientsList();
-            SetRecipe(goalIngrendients);
-            //PrintIngredientsList(goalIngrendients);
-            yield return new WaitForSeconds(5);
-        }
-    }
+    //IEnumerator GenerateGoalIngredientsCoroutine()
+    //{
+    //    while (true)
+    //    {
+    //        GenerateGoalIngredientsList();
+    //        SetRecipe(goalIngrendients);
+    //        //PrintIngredientsList(goalIngrendients);
+    //        yield return new WaitForSeconds(5);
+    //    }
+    //}
 
     //void PrintIngredientsList(List<IngredientClass> _list)
     //{
@@ -157,28 +157,12 @@ public class GameManager : MonoBehaviour
     {
         recipeText.text = "Recipe: ";
 
-        //namesToChange = new List<Utils.TMProName>();
-        //int totalWordsAmmount = Utils.GetWordsAmmount(recipeText.text);
-        //int nameWordsAmmount;
         for (int i = 0; i < _list.Count - 1; i++)
         {
-            //if (i == 0)
-            //{
-            //    nameWordsAmmount = Utils.GetWordsAmmount(_list[i].name);
-            //    namesToChange.Add(new Utils.TMProName(Color.green, nameWordsAmmount, totalWordsAmmount));
-            //}
-
             recipeText.text += _list[i].name + ", ";
-            //totalWordsAmmount = Utils.GetWordsAmmount(recipeText.text);
         }
-        //nameWordsAmmount = Utils.GetWordsAmmount(_list[_list.Count - 1].name);
-        //namesToChange.Add(new Utils.TMProName(Color.green, nameWordsAmmount, totalWordsAmmount));
+
         recipeText.text += _list[_list.Count - 1].name + ".";
-
-
-        //recipeText.ForceMeshUpdate();
-        //Utils.PaintTMProWords(recipeText, namesToChange);
-        //recipeText.UpdateVertexData();
 
     }
 
@@ -222,11 +206,12 @@ public class GameManager : MonoBehaviour
    #region INGREDIENTS_LIST_REGION
     private void GenerateGoalIngredientsList()
     {
-        int listMaxRange = 5;
-        int ingredientsNum = Random.RandomRange(1, listMaxRange);
+        int listMaxRange = 6;
+        int ingredientsNum = Random.RandomRange(2, listMaxRange);
         bool rareCostumer = Random.RandomRange(0, rareCostumerRatio) == 0;
 
         goalIngrendients = new List<IngredientClass>(ingredientsNum);
+        List<int> idsUsed = new List<int>(ingredientsNum);
         for (int i = 0; i < ingredientsNum; i++)
         {
             int ingredientId = Random.RandomRange(0, fullIngrendientsList.Count);
@@ -235,7 +220,15 @@ public class GameManager : MonoBehaviour
                 do
                 {
                     ingredientId = Random.RandomRange(0, fullIngrendientsList.Count);
-                } while (!fullIngrendientsList[ingredientId].edible);
+                } while (!rareCostumer && !fullIngrendientsList[ingredientId].edible
+                        && Utils.FindInList<int>(idsUsed, ingredientId) >= 0);
+            }
+            else
+            {
+                while (Utils.FindInList<int>(idsUsed, ingredientId) >= 0)
+                {
+                    ingredientId = Random.RandomRange(0, fullIngrendientsList.Count);
+                }
             }
 
             goalIngrendients.Add(fullIngrendientsList[ingredientId]);
