@@ -17,6 +17,9 @@ public class MoveCamera : MonoBehaviour
     {
         tableTargetPosition = transform.position;
         tableTargetRotation = transform.localRotation;
+
+        GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().Reinit();
+
         //Debug.Log(transform.localRotation);
     }
 

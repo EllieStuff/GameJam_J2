@@ -5,8 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        gameManager.Reinit();
+    }
+
+
     public void PlayGame()
     {
+        gameManager.gameState = Const.GameState.PLAYING;
         SceneManager.LoadScene("Game");
     }
 

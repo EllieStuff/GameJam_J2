@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public Const.GameState gameState = Const.GameState.INIT;
 
+    private int roundNum = 0;
     private int rareCostumerRatio = 10;
     private int numOfClients = 0;
     private float currSatisfaction = 0.0f;
@@ -96,6 +97,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Reinit();
+    }
+
+    public void Reinit()
+    {
         switch (gameState)
         {
             case Const.GameState.INIT:
@@ -110,6 +116,9 @@ public class GameManager : MonoBehaviour
                 break;
 
             case Const.GameState.PLAYING:
+                Debug.Log(roundNum);
+                roundNum++;
+
                 recipeText = GameObject.Find("Pizza_Recipe_Text").GetComponent<TextMeshProUGUI>();
                 pizzaScript = GameObject.FindGameObjectWithTag("Pizza").GetComponent<PizzaScript>();
                 GenerateGoalIngredientsList();
@@ -129,7 +138,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RefreshRecipe(goalIngrendients);
+        if(gameState == Const.GameState.PLAYING && recipeText != null)
+            RefreshRecipe(goalIngrendients);
     }
 
     //IEnumerator GenerateGoalIngredientsCoroutine()

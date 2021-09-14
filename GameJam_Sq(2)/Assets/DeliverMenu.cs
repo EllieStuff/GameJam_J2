@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class DeliverMenu : MonoBehaviour
 {
     private MoveCamera camera;
+    private GameManager gameManager;
 
     //public GameObject standartUI;
 
@@ -14,6 +15,7 @@ public class DeliverMenu : MonoBehaviour
     private void Start()
     {
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MoveCamera>();
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
     }
 
     //public void Resume()
@@ -47,7 +49,9 @@ public class DeliverMenu : MonoBehaviour
     public void RestartScene()
     {
         Time.timeScale = 1f;
+        //gameManager.gameState = Const.GameState.PLAYING;
         SceneManager.LoadScene("Game");
+        //gameManager.Reinit();
 
     }
     /*// Start is called before the first frame update
