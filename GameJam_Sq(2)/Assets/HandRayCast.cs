@@ -10,6 +10,7 @@ public class HandRayCast : MonoBehaviour
     private GameObject currentItem;
     private GameObject lastHandAboveItem = null;
     private bool itemCatched = false;
+    private AudioSource audio;
     //private SpVoice voice;
 
 
@@ -19,6 +20,7 @@ public class HandRayCast : MonoBehaviour
         manager = GetComponentInParent<PersonManager>();
         bodyScript = manager.body.GetComponent<FollowMouse>();
 
+        audio = new AudioSource();
         //voice = new SpVoice();
 
     }
@@ -43,6 +45,7 @@ public class HandRayCast : MonoBehaviour
                         if (lastHandAboveItem != null)
                             lastHandAboveItem.GetComponent<Outline>().enabled = false;
                         lastHandAboveItem = hit.collider.gameObject;
+                        lastHandAboveItem.GetComponent<Outline>().OutlineColor = new Color(0, 200, 0, 50);
                         lastHandAboveItem.GetComponent<Outline>().enabled = true;
                     }
 
@@ -50,6 +53,13 @@ public class HandRayCast : MonoBehaviour
                     {
                         itemCatched = true;
                         currentItem = hit.collider.gameObject;
+                        AudioClip clip = Resources.Load<AudioClip>("Tomato");
+                        //AudioClip clip = (AudioClip)Resources.Load("Prefabs/Food_SFX/" + currentItem.tag);
+                        if (clip == null)
+                            Debug.Log("Clip '" + currentItem.tag + "' not found");
+                        else
+                            audio.PlayOneShot(clip);
+
                         //voice.Voice = voice.GetVoices(string.Empty, string.Empty).Item(0);
                         //voice.Speak(currentItem.tag);
                     }
