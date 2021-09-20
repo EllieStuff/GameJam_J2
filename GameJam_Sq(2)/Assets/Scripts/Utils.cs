@@ -34,6 +34,16 @@ public static class Utils
         public TMProChar(Color32 _color, int _idx)
             { color = _color; idx = _idx; }
     }
+
+    public static int RandomizePositiveNegative()
+    {
+        float rnd = Random.RandomRange(-1, 1);
+
+        if (rnd < 0)
+            return -1;
+        else
+            return 1;
+    }
     
     public static int FindInList<T>(List<T> listToSearch, T elementToFind)
     {

@@ -2,6 +2,5 @@
 ToDo:
  - Puntuacio
  - Feedback en ingredients dolents
- - Indicar quin ingredient has agafat (si es amb audio millor)
 
  - IDEA: Fer que la maxScore es decideixi pel numero de rondes que aguantes per sobre de les 2.5 estrelles

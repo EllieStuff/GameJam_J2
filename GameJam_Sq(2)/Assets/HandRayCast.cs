@@ -10,6 +10,7 @@ public class HandRayCast : MonoBehaviour
     private GameObject currentItem;
     private GameObject lastHandAboveItem = null;
     private bool itemCatched = false;
+    private AudioSource audio;
     //private SpVoice voice;
 
 
@@ -18,6 +19,7 @@ public class HandRayCast : MonoBehaviour
     {
         manager = GetComponentInParent<PersonManager>();
         bodyScript = manager.body.GetComponent<FollowMouse>();
+        audio = GetComponent<AudioSource>();
 
         //voice = new SpVoice();
 
@@ -43,6 +45,7 @@ public class HandRayCast : MonoBehaviour
                         if (lastHandAboveItem != null)
                             lastHandAboveItem.GetComponent<Outline>().enabled = false;
                         lastHandAboveItem = hit.collider.gameObject;
+                        lastHandAboveItem.GetComponent<Outline>().OutlineColor = new Color(0, 200, 0, 50);
                         lastHandAboveItem.GetComponent<Outline>().enabled = true;
                     }
 
@@ -50,6 +53,30 @@ public class HandRayCast : MonoBehaviour
                     {
                         itemCatched = true;
                         currentItem = hit.collider.gameObject;
+
+                        AudioClip clip = Resources.Load<AudioClip>("Food_SFX/" + currentItem.tag);
+                        float minPitch = 0.1f;
+                        float maxPitch = 0.4f;
+                        if (currentItem.tag == "Pan")
+                        {
+                            int rnd = Random.RandomRange(0, 50);
+                            if (rnd == 0)
+                            {
+                                clip = Resources.Load<AudioClip>("Food_SFX/Easter Eggs/Easter Egg " + currentItem.tag);
+                                minPitch = 0.3f;
+                                maxPitch = 0.7f;
+                            }
+                        }
+
+                        if (clip == null)
+                            Debug.Log("Clip '" + currentItem.tag + "' not found");
+                        else
+                        {
+                            audio.pitch = 1 + Random.RandomRange(minPitch, maxPitch) * Utils.RandomizePositiveNegative();
+
+                            audio.PlayOneShot(clip);
+                        }
+
                         //voice.Voice = voice.GetVoices(string.Empty, string.Empty).Item(0);
                         //voice.Speak(currentItem.tag);
                     }
