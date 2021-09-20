@@ -2,8 +2,5 @@
 ToDo:
  - Puntuacio
  - Feedback en ingredients dolents
- - Indicar quin ingredient has agafat (si es amb audio millor)
- - Fer que els "Quit" funcionin
- - Fer que la mateixa canco no soni dos cops seguits
 
  - IDEA: Fer que la maxScore es decideixi pel numero de rondes que aguantes per sobre de les 2.5 estrelles

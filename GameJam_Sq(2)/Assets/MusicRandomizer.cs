@@ -8,7 +8,15 @@ public class MusicRandomizer : MonoBehaviour
 
     void Start()
     {
-        GetComponent<AudioSource>().clip = songs[Random.RandomRange(0, 5)];
+        int rndSongId = Random.RandomRange(0, 5);
+        while(PlayerPrefs.GetInt("lastRndSongId", -1) == rndSongId)
+        {
+            rndSongId = Random.RandomRange(0, 5);
+        }
+        PlayerPrefs.SetInt("lastRndSongId", rndSongId);
+
+
+        GetComponent<AudioSource>().clip = songs[rndSongId];
         GetComponent<AudioSource>().Play();
     }
 
