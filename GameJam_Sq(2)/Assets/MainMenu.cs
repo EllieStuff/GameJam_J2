@@ -17,6 +17,8 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         gameManager.gameState = Const.GameState.PLAYING;
+        PlayerPrefs.SetInt("currTimeLeft", ClockManager.GetDefaultStartTime());
+
         SceneManager.LoadScene("Game");
     }
 

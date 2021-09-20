@@ -42,7 +42,6 @@ TagManager:
   - Cooked Lettuce
   - Carrot Slice
   - Ham
-  - Letttuce Leaf
   - Carrot
   - Oven
   - Table
@@ -50,6 +49,7 @@ TagManager:
   - Cooked Pineapple
   - Pineapple Slice
   - Game Manager
+  - Lettuce Leaf
   layers:
   - Default
   - TransparentFX

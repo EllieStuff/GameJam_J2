@@ -1,6 +1,6 @@
 
 ToDo:
- - Puntuacio
+ - Puntuacio segons timer
  - Feedback en ingredients dolents
 
  - IDEA: Fer que la maxScore es decideixi pel numero de rondes que aguantes per sobre de les 2.5 estrelles

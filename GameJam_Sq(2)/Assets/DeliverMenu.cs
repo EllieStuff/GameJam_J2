@@ -49,6 +49,7 @@ public class DeliverMenu : MonoBehaviour
     public void RestartScene()
     {
         Time.timeScale = 1f;
+        PlayerPrefs.SetInt("currTimeLeft", ClockManager.GetTimeLeft());
         //gameManager.gameState = Const.GameState.PLAYING;
         SceneManager.LoadScene("Game");
         //gameManager.Reinit();
