@@ -124,4 +124,9 @@ public class FoodScript : MonoBehaviour
         Spawn(objectToSpawnIfCooked, numOfObjectsToSpawnIfCooked);
         Destroy(gameObject);
     }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }

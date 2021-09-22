@@ -7,13 +7,15 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
 
-    public Const.GameState gameState = Const.GameState.INIT;
-
-    private int roundNum = 0;
+    public static Const.GameState gameState = Const.GameState.INIT;
+    
+    private static float currScore = 0;
+    
+    //private int roundNum = 0;
     private int rareCostumerRatio = 10;
-    private int numOfClients = 0;
-    private float currSatisfaction = 0.0f;
-    private float maxSatisfaction = 0.0f;
+    //private int numOfClients = 0;
+    //private float currSatisfaction = 0.0f;
+    //private float maxSatisfaction = 0.0f;
     private List<IngredientClass> goalIngrendients;
     private List<IngredientClass> fullIngrendientsList = new List<IngredientClass>()
     {
@@ -116,8 +118,8 @@ public class GameManager : MonoBehaviour
                 break;
 
             case Const.GameState.PLAYING:
-                Debug.Log(roundNum);
-                roundNum++;
+                //Debug.Log(roundNum);
+                //roundNum++;
 
                 recipeText = GameObject.Find("Pizza_Recipe_Text").GetComponent<TextMeshProUGUI>();
                 pizzaScript = GameObject.FindGameObjectWithTag("Pizza").GetComponent<PizzaScript>();
@@ -283,18 +285,22 @@ public class GameManager : MonoBehaviour
 
 
     #region SCORE_REGION
+
+
+
+
     public float CalculateCurrSatifaction(List<string> finalIngredients)
     {
         float tmpScore = 0.0f;
-        
-        float numPercentatge = 4.0f;
-        int ingredientsDiff = Mathf.Abs(finalIngredients.Count - goalIngrendients.Count);
-        float numPunctuation = (ingredientsDiff * numPercentatge) / (goalIngrendients.Count);
 
-        
-        float ingredientsCoincidencePercentatge = 6.0f;
+        float numPercentatge = 0.4f;
+        int ingredientsDiff = Mathf.Abs(finalIngredients.Count - goalIngrendients.Count);
+        float numPunctuation = (ingredientsDiff * numPercentatge);   // / (goalIngrendients.Count);
+
+
+        float ingredientsCoincidencePercentatge = 0.6f;
         int currCoincidences = 0;
-        foreach(IngredientClass ingredient in goalIngrendients)
+        foreach (IngredientClass ingredient in goalIngrendients)
         {
             int elementId = Utils.FindInList<string>(finalIngredients, ingredient.name);
             if (elementId >= 0)
@@ -302,29 +308,45 @@ public class GameManager : MonoBehaviour
                 currCoincidences++;
                 finalIngredients.RemoveAt(elementId);
             }
+            else
+            {
+                currCoincidences--;
+            }
         }
         //int ingredientsCoincidenceDiff = Mathf.Abs(finalIngredients.Count - goalIngrendients.Count);  //crec que aquesta no
-        float ingredientsCoincidencePunctuation = (currCoincidences * ingredientsCoincidencePercentatge) / (goalIngrendients.Count);
+        if (currCoincidences < 0) currCoincidences = 0;
+        float ingredientsCoincidencePunctuation = (currCoincidences * ingredientsCoincidencePercentatge);   // / (goalIngrendients.Count);
 
         tmpScore = numPunctuation + ingredientsCoincidencePunctuation;
-        currSatisfaction = (currSatisfaction * (numOfClients - 1) + tmpScore) / numOfClients;   //ToDo: Add new client when pizza delivered
+        //currSatisfaction = (currSatisfaction * (numOfClients - 1) + tmpScore) / numOfClients;   //ToDo: Add new client when pizza delivered
 
-        if(currSatisfaction > maxSatisfaction && numOfClients > 0)
-        {
-            //ToDo: Fer mitjana amb satisfaccio i numero de clients
+        //if (currSatisfaction > maxSatisfaction && numOfClients > 0)
+        //{
+        //    //ToDo: Fer mitjana amb satisfaccio i numero de clients
 
-        }
+        //}
 
 
         return tmpScore;
     }
 
-    public float GetCurrSatisfaction()
+    public static void SetCurrScore(int _currScore)
     {
-        return currSatisfaction;
+        currScore = _currScore;
     }
 
-   #endregion
+    public static int GetCurrScore()
+    {
+        return (int)currScore;
+    }
+
+
+    //public float GetCurrSatisfaction()
+    //{
+    //    return currSatisfaction;
+    //}
+
+    #endregion
 
 
 

@@ -16,7 +16,8 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        gameManager.gameState = Const.GameState.PLAYING;
+        GameManager.gameState = Const.GameState.PLAYING;
+        GameManager.SetCurrScore(0);
         PlayerPrefs.SetInt("currTimeLeft", ClockManager.GetDefaultStartTime());
 
         SceneManager.LoadScene("Game");
@@ -24,6 +25,11 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        if(PlayerPrefs.GetInt("maxScore", 0) < GameManager.GetCurrScore())
+        {
+            PlayerPrefs.SetInt("maxScore", GameManager.GetCurrScore());
+        }
+
         Debug.Log("Quit");
         Application.Quit();
     }
