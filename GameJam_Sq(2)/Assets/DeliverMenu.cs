@@ -36,6 +36,8 @@ public class DeliverMenu : MonoBehaviour
     {
         //standartUI.SetActive(false);
         camera.cameraPosition = Const.CameraPositions.FURNANCE;
+        GameManager.gameState = Const.GameState.DELIVERING;
+
         GameObject.FindGameObjectWithTag("Pizza").GetComponent<PizzaScript>().SetRefreshIngredients(false);
         //Time.timeScale = 0f;
     }
@@ -43,14 +45,20 @@ public class DeliverMenu : MonoBehaviour
     public void UnloadDeliveryMenu()
     {
         camera.cameraPosition = Const.CameraPositions.TABLE;
+        GameManager.gameState = Const.GameState.PLAYING;
+
         GameObject.FindGameObjectWithTag("Pizza").GetComponent<PizzaScript>().SetRefreshIngredients(true);
     }
 
     public void RestartScene()
     {
+        GameManager.gameState = Const.GameState.PLAYING;
         Time.timeScale = 1f;
+
         PlayerPrefs.SetInt("currTimeLeft", ClockManager.GetTimeLeft());
-        //gameManager.gameState = Const.GameState.PLAYING;
+        GameManager.SetCurrScore(GameManager.GetCurrScore() + (int)gameManager.CalculateCurrSatifaction(gameManager.GetPizzaIngredients()));
+
+
         SceneManager.LoadScene("Game");
         //gameManager.Reinit();
 

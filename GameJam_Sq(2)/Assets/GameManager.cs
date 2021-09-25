@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         new IngredientClass("Cooked Sausage Slice", true, null),
 
         // Altres
-        new IngredientClass("Species", true, null)
+        //new IngredientClass("Species", true, null)
 
     };
 
@@ -232,8 +232,8 @@ public class GameManager : MonoBehaviour
                 do
                 {
                     ingredientId = Random.RandomRange(0, fullIngrendientsList.Count);
-                } while (!rareCostumer && !fullIngrendientsList[ingredientId].edible
-                        && Utils.FindInList<int>(idsUsed, ingredientId) >= 0);
+                } while ((!rareCostumer && !fullIngrendientsList[ingredientId].edible)
+                        || (Utils.FindInList<int>(idsUsed, ingredientId) >= 0));
             }
             else
             {
@@ -244,6 +244,7 @@ public class GameManager : MonoBehaviour
             }
 
             goalIngrendients.Add(fullIngrendientsList[ingredientId]);
+            idsUsed.Add(ingredientId);
         }
 
     }
@@ -251,6 +252,11 @@ public class GameManager : MonoBehaviour
     public List<IngredientClass> GetGoalIngredientsList()
     {
         return goalIngrendients;
+    }
+
+    public List<string> GetPizzaIngredients()
+    {
+        return pizzaScript.ingredients;
     }
 
     public bool CheckIfGoalIngredient(string _ingredientName)
@@ -293,12 +299,17 @@ public class GameManager : MonoBehaviour
     {
         float tmpScore = 0.0f;
 
-        float numPercentatge = 0.4f;
+        float numPercentatge = 0.2f;
+        float ingredientsCoincidencePercentatge = 0.4f;
+        float speedPercentatge = 0.4f;
+
+
+        // Num
         int ingredientsDiff = Mathf.Abs(finalIngredients.Count - goalIngrendients.Count);
-        float numPunctuation = (ingredientsDiff * numPercentatge);   // / (goalIngrendients.Count);
+        float numPunctuation = (((goalIngrendients.Count - ingredientsDiff) * numPercentatge) * 10) / (goalIngrendients.Count);
+        if (numPunctuation < 0) numPunctuation = 0;
 
-
-        float ingredientsCoincidencePercentatge = 0.6f;
+        // Coincidence
         int currCoincidences = 0;
         foreach (IngredientClass ingredient in goalIngrendients)
         {
@@ -313,19 +324,29 @@ public class GameManager : MonoBehaviour
                 currCoincidences--;
             }
         }
-        //int ingredientsCoincidenceDiff = Mathf.Abs(finalIngredients.Count - goalIngrendients.Count);  //crec que aquesta no
-        if (currCoincidences < 0) currCoincidences = 0;
-        float ingredientsCoincidencePunctuation = (currCoincidences * ingredientsCoincidencePercentatge);   // / (goalIngrendients.Count);
+        float ingredientsCoincidencePunctuation = ((currCoincidences * ingredientsCoincidencePercentatge) * 10) / (goalIngrendients.Count);
+        if (ingredientsCoincidencePunctuation < 0) ingredientsCoincidencePunctuation = 0;
 
-        tmpScore = numPunctuation + ingredientsCoincidencePunctuation;
-        //currSatisfaction = (currSatisfaction * (numOfClients - 1) + tmpScore) / numOfClients;   //ToDo: Add new client when pizza delivered
+        // Speed
+        float expectedMedianSpeed = 6.8f;
+        float bestExpectedTime = goalIngrendients.Count * expectedMedianSpeed;
+        float realTakenTime = ClockManager.GetTimeTaken();
 
-        //if (currSatisfaction > maxSatisfaction && numOfClients > 0)
-        //{
-        //    //ToDo: Fer mitjana amb satisfaccio i numero de clients
+        float speedPunctuation;
+        if(bestExpectedTime >= realTakenTime)
+        {
+            speedPunctuation = speedPercentatge * 10;
+        }
+        else
+        {
+            float timeDiff = realTakenTime - bestExpectedTime;
+            speedPunctuation = ((bestExpectedTime - timeDiff) * speedPercentatge * 10) / bestExpectedTime;
+            if (speedPunctuation < 0) speedPunctuation = 0;
+        }
 
-        //}
 
+        // Total
+        tmpScore = (numPunctuation + ingredientsCoincidencePunctuation + speedPunctuation) * 10;
 
         return tmpScore;
     }

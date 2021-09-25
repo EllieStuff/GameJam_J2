@@ -31,8 +31,10 @@ public class SpawnRandomFood : MonoBehaviour
             GameObject tmpGameObject = listOfFoodPrefabs[rndFoodId];
             Vector3 tmpScale = tmpGameObject.transform.localScale;
             tmpGameObject.transform.localScale = new Vector3(tmpScale.x * scaleInc, tmpScale.y * scaleInc, tmpScale.z * scaleInc);
+            tmpGameObject.GetComponent<FoodScript>().destroyOutOfScreen = true;
             Instantiate(tmpGameObject, transform.position, Random.rotation);
             tmpGameObject.transform.localScale = tmpScale;
+            tmpGameObject.GetComponent<FoodScript>().destroyOutOfScreen = false;
 
         }
 

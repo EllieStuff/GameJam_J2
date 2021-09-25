@@ -8,6 +8,7 @@ public class FoodScript : MonoBehaviour
     public GameObject objectToSpawnIfCooked = null;
     public GameObject objectToSpawnIfChopped = null;
     public int numOfObjectsToSpawnIfChopped = 2;
+    public bool destroyOutOfScreen = false;
 
     private int numOfObjectsToSpawnIfCooked = 1;
     private GameObject kitchen;
@@ -127,6 +128,7 @@ public class FoodScript : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        Destroy(gameObject);
+        if(destroyOutOfScreen)
+            Destroy(gameObject);
     }
 }

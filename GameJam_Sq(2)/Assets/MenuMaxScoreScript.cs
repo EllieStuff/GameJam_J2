@@ -23,6 +23,11 @@ public class MenuMaxScoreScript : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        transform.rotation = Quaternion.identity;
+    }
+
     // Update is called once per frame
     void Update()
     {

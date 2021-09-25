@@ -9,6 +9,7 @@ public class Floater : MonoBehaviour
     public bool applyChangeRotDir = false;
     public Vector3 changeRotDirTimes = new Vector3(5.0f, 5.0f, 0.0f);
     public float frequency = 1f;
+    public float stopOverTime = -1;
 
     private Vector3Int rotDir = new Vector3Int(1, 1, 1);
 
@@ -24,8 +25,17 @@ public class Floater : MonoBehaviour
         // Store the starting position & rotation of the object
         posOffset = transform.position;
 
-        StartCoroutine(ChangeRotDirCoroutine());
+        //StartCoroutine(ChangeRotDirCoroutine());
     }
+
+    private void OnEnable()
+    {
+        StartCoroutine(ChangeRotDirCoroutine());
+
+        if (stopOverTime > 0)
+            StartCoroutine(StopOverTime());
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -71,6 +81,29 @@ public class Floater : MonoBehaviour
             rotTimers.z += Time.deltaTime;
         }
 
+
+    }
+
+    IEnumerator StopOverTime()
+    {
+        float timeLeft = stopOverTime;
+        Vector3 
+            initSpeed = speed,
+            initRotSpeed = rotSpeed;
+
+        while (timeLeft > 0)
+        {
+            float lerpTime = (stopOverTime - timeLeft) / stopOverTime;
+            speed = Vector3.Lerp(initSpeed, Vector3.zero, lerpTime);
+            rotSpeed = Vector3.Lerp(initRotSpeed, Vector3.zero, lerpTime);
+
+            yield return new WaitForEndOfFrame();
+            timeLeft -= Time.deltaTime;
+
+        }
+
+        speed = Vector3.zero;
+        rotSpeed = Vector3.zero;
 
     }
 
