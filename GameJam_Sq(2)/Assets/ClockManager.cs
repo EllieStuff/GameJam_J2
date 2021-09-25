@@ -5,6 +5,14 @@ using TMPro;
 
 public class ClockManager : MonoBehaviour
 {
+    const float
+        CLOCK_VOL_AT_DEFAULT = 0.01f,
+        CLOCK_VOL_AT_60 = 0.04f,
+        CLOCK_VOL_AT_30 = 0.15f,
+        CLOCK_VOL_AT_10 = 0.3f,
+        CLOCK_VOL_AT_5 = 0.5f;
+
+
     private static int DEFAULT_START_TIME = 180;
 
     private static int timeLeft = DEFAULT_START_TIME;
@@ -12,21 +20,28 @@ public class ClockManager : MonoBehaviour
 
     [SerializeField]
     GameObject stopMenu;
+    [SerializeField]
+    AudioClip clockClip;
+    [SerializeField]
+    AudioClip alarmClip;
 
     private TextMeshProUGUI timerText;
-    private AudioSource audio;
+    private AudioSource mainAudio;
+    private AudioSource clockAudio;
     //private int musicSpeedUp = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         timerText = GetComponentInChildren<TextMeshProUGUI>();
-        audio = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
-
+        mainAudio = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
+        clockAudio = GetComponent<AudioSource>();
 
         timeLeft = PlayerPrefs.GetInt("currTimeLeft", DEFAULT_START_TIME);
         startingTimeLeft = timeLeft;
+
         StartMusicState(timeLeft);
+
 
         StartCoroutine(ClockCoroutine());
     }
@@ -52,7 +67,7 @@ public class ClockManager : MonoBehaviour
     {
         if(_timeLeft <= 10)
         {
-            if (_timeLeft % 2 == 0)
+            if (_timeLeft % 2 == 0 || _timeLeft <= 5)
             {
                 return Color.red;
             }
@@ -99,26 +114,36 @@ public class ClockManager : MonoBehaviour
 
     void StartMusicState(int _timeLeft)
     {
+        clockAudio.clip = clockClip;
+
         if (_timeLeft <= 5)
         {
-            audio.pitch = 1.4f;
+            mainAudio.pitch = 1.4f;
+            clockAudio.volume = CLOCK_VOL_AT_5;
         }
         else if (_timeLeft <= 10)
         {
-            audio.pitch = 1.2f;
+            mainAudio.pitch = 1.2f;
+            clockAudio.volume = CLOCK_VOL_AT_10;
         }
         else if (_timeLeft <= 30)
         {
-            audio.pitch = 1.1f;
+            mainAudio.pitch = 1.1f;
+            clockAudio.volume = CLOCK_VOL_AT_30;
         }
         else if (_timeLeft <= 60)
         {
-            audio.pitch = 1.05f;
+            mainAudio.pitch = 1.05f;
+            clockAudio.volume = CLOCK_VOL_AT_60;
         }
         else
         {
-            audio.pitch = 1.0f;
+            mainAudio.pitch = 1.0f;
+            clockAudio.volume = CLOCK_VOL_AT_DEFAULT;
         }
+
+        clockAudio.loop = true;
+        clockAudio.Play();
 
     }
 
@@ -126,19 +151,23 @@ public class ClockManager : MonoBehaviour
     {
         if (_timeLeft == 60)
         {
-            audio.pitch = 1.05f;
+            mainAudio.pitch = 1.05f;
+            clockAudio.volume = CLOCK_VOL_AT_60;
         }
         else if (_timeLeft == 30)
         {
-            audio.pitch = 1.1f;
+            mainAudio.pitch = 1.1f;
+            clockAudio.volume = CLOCK_VOL_AT_30;
         }
         else if (_timeLeft == 10)
         {
-            audio.pitch = 1.2f;
+            mainAudio.pitch = 1.2f;
+            clockAudio.volume = CLOCK_VOL_AT_10;
         }
         else if (_timeLeft == 5)
         {
-            audio.pitch = 1.4f;
+            mainAudio.pitch = 1.4f;
+            clockAudio.volume = CLOCK_VOL_AT_5;
         }
 
     }
@@ -154,7 +183,7 @@ public class ClockManager : MonoBehaviour
                 if (GameManager.gameState == Const.GameState.DELIVERING)
                 {
                     yield return new WaitForEndOfFrame();
-                    timerText.color = Color.grey;
+                    timerText.color = new Color(200, 200, 200);
                 }
                 else 
                     timerText.color = GetTimerTextColor(timeLeft);
@@ -180,20 +209,54 @@ public class ClockManager : MonoBehaviour
 
         }
 
+
+        PlayAlarm();
         EndGame();
         
+    }
+
+    private void PlayAlarm()
+    {
+        clockAudio.volume = 1.0f;
+        clockAudio.clip = alarmClip;
+        clockAudio.loop = false;
+        clockAudio.Play();
+
+        StartCoroutine(WaitAndPlay(3, 3));
+
     }
 
     private void EndGame()
     {
         GameManager.gameState = Const.GameState.END_GAME;
+        PauseMenu.gameIsPaused = true;
         //Time.timeScale = 0;
-        audio.pitch = 1.0f;
-        audio.volume = audio.volume / 4;
         stopMenu.SetActive(true);
 
         if (PlayerPrefs.GetInt("maxScore", 0) < GameManager.GetCurrScore())
             PlayerPrefs.SetInt("maxScore", GameManager.GetCurrScore());
+
+    }
+
+    IEnumerator WaitAndPlay(float _waitSeconds, float _lerpDuration)
+    {
+        float targetVolume = mainAudio.volume / 3;
+        mainAudio.volume = 0.0f;
+        mainAudio.pitch = 0.8f;
+
+        yield return new WaitForSeconds(_waitSeconds);
+
+        float lerpTimer = 0;
+        while(lerpTimer < _lerpDuration)
+        {
+            mainAudio.volume = Mathf.Lerp(0, targetVolume, lerpTimer);
+
+            yield return new WaitForEndOfFrame();
+            lerpTimer += Time.deltaTime;
+        }
+
+
+        mainAudio.volume = targetVolume;
 
     }
 

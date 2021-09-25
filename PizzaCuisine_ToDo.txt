@@ -1,8 +1,4 @@
 
 ToDo:
- - Comprovar que la maxScore es guardi be
  - Feedback en ingredients dolents
- - SFX en timer
 
-??
- - Treure el silenci al principi dels SFX del menjar

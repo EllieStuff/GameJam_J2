@@ -32,7 +32,7 @@ public class StopMenu : MonoBehaviour
     public void Retry()
     {
         GameManager.gameState = Const.GameState.PLAYING;
-        //Time.timeScale = 1f;
+        PauseMenu.gameIsPaused = false;
 
         PlayerPrefs.SetInt("currTimeLeft", ClockManager.GetDefaultStartTime());
         GameManager.SetCurrScore(0);
@@ -44,7 +44,7 @@ public class StopMenu : MonoBehaviour
 
     public void LoadMenu()
     {
-        Time.timeScale = 1f;
+        PauseMenu.gameIsPaused = false;
 
         SceneManager.LoadScene("Menu");
     }

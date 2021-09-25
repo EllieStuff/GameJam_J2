@@ -19,6 +19,7 @@ public class MainMenu : MonoBehaviour
         GameManager.gameState = Const.GameState.PLAYING;
         GameManager.SetCurrScore(0);
         PlayerPrefs.SetInt("currTimeLeft", ClockManager.GetDefaultStartTime());
+        PauseMenu.gameIsPaused = false;
 
         SceneManager.LoadScene("Game");
     }

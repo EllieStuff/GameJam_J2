@@ -10,8 +10,9 @@ public class HandRayCast : MonoBehaviour
     private GameObject currentItem;
     private GameObject lastHandAboveItem = null;
     private bool itemCatched = false;
+
     private AudioSource audio;
-    //private SpVoice voice;
+    private bool audioOn = true;
 
 
     // Start is called before the first frame update
@@ -20,8 +21,6 @@ public class HandRayCast : MonoBehaviour
         manager = GetComponentInParent<PersonManager>();
         bodyScript = manager.body.GetComponent<FollowMouse>();
         audio = GetComponent<AudioSource>();
-
-        //voice = new SpVoice();
 
     }
 
@@ -32,7 +31,7 @@ public class HandRayCast : MonoBehaviour
         //Vector3 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //transform.position = new Vector3(newPos.x - bodyScript.edge.z, newPos.y, newPos.z - bodyScript.edge.z);
 
-        if (Time.timeScale > 0)
+        if (!PauseMenu.gameIsPaused)
         {
             RaycastHit hit;
             if (!itemCatched && Physics.Raycast(transform.position, Vector3.down, out hit, 5))
@@ -55,8 +54,8 @@ public class HandRayCast : MonoBehaviour
                         currentItem = hit.collider.gameObject;
 
                         AudioClip clip = Resources.Load<AudioClip>("Food_SFX/" + currentItem.tag);
-                        float minPitch = 0.1f;
-                        float maxPitch = 0.4f;
+                        float minPitch = 0.2f;
+                        float maxPitch = 0.5f;
                         if (currentItem.tag == "Pan")
                         {
                             int rnd = Random.RandomRange(0, 50);
@@ -106,8 +105,23 @@ public class HandRayCast : MonoBehaviour
 
         }
 
+        CheckAudioSourceState();
+
     }
 
+
+    void CheckAudioSourceState()
+    {
+        if(PauseMenu.gameIsPaused && audioOn)
+        {
+            audioOn = false;
+            audio.pitch = 5.0f;
+        }
+        else if(!PauseMenu.gameIsPaused && !audioOn)
+        {
+            audioOn = true;
+        }
+    }
 
     void DiferentiateItem(string itemTag)
     {
