@@ -5,6 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class DeliverMenu : MonoBehaviour
 {
+    [SerializeField]
+    GameObject scoreText;
+    
+    private float scoreTextSpeed = 4.0f;
+    private int scoreTextYMove = 80;
+    private Vector3 
+        initialScorePos,
+        targetScorePos;
+
     private MoveCamera camera;
     private GameManager gameManager;
 
@@ -16,6 +25,9 @@ public class DeliverMenu : MonoBehaviour
     {
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MoveCamera>();
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+
+        initialScorePos = scoreText.transform.position;
+        targetScorePos = new Vector3(initialScorePos.x, initialScorePos.y + scoreTextYMove, initialScorePos.z);
     }
 
     //public void Resume()
@@ -40,6 +52,8 @@ public class DeliverMenu : MonoBehaviour
 
         GameObject.FindGameObjectWithTag("Pizza").GetComponent<PizzaScript>().SetRefreshIngredients(false);
         //Time.timeScale = 0f;
+
+        StartCoroutine(LerpScorePos(initialScorePos, targetScorePos, scoreTextSpeed));
     }
 
     public void UnloadDeliveryMenu()
@@ -48,6 +62,8 @@ public class DeliverMenu : MonoBehaviour
         GameManager.gameState = Const.GameState.PLAYING;
 
         GameObject.FindGameObjectWithTag("Pizza").GetComponent<PizzaScript>().SetRefreshIngredients(true);
+
+        StartCoroutine(LerpScorePos(targetScorePos, initialScorePos, scoreTextSpeed));
     }
 
     public void RestartScene()
@@ -74,4 +90,22 @@ public class DeliverMenu : MonoBehaviour
     {
         
     }*/
+
+
+    IEnumerator LerpScorePos(Vector3 _initPos, Vector3 _targetPos, float _speed)
+    {
+        float lerpTimer = 0.0f;
+        while (lerpTimer < 1.0f)
+        {
+            yield return new WaitForEndOfFrame();
+            lerpTimer += (Time.deltaTime * _speed);
+
+            scoreText.transform.position = Vector3.Lerp(_initPos, _targetPos, lerpTimer);
+        }
+
+        scoreText.transform.position = _targetPos;
+
+    }
+
+
 }

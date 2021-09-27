@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5189065739910943787}
   m_Layer: 0
   m_Name: Lettuce_Leaf
-  m_TagString: Letttuce Leaf
+  m_TagString: Lettuce Leaf
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,3 +129,4 @@ MonoBehaviour:
     type: 3}
   objectToSpawnIfChopped: {fileID: 0}
   numOfObjectsToSpawnIfChopped: 2
+  destroyOutOfScreen: 0

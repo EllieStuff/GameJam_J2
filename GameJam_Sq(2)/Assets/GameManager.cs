@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static Const.GameState gameState = Const.GameState.INIT;
     
     private static float currScore = 0;
+    private static float currSatisfaction = 0;
     
     //private int roundNum = 0;
     private int rareCostumerRatio = 10;
@@ -125,6 +126,7 @@ public class GameManager : MonoBehaviour
                 pizzaScript = GameObject.FindGameObjectWithTag("Pizza").GetComponent<PizzaScript>();
                 GenerateGoalIngredientsList();
                 SetRecipe(goalIngrendients);
+                CalculateCurrSatifaction(new List<string>());
 
                 //StartCoroutine(GenerateGoalIngredientsCoroutine());
 
@@ -295,7 +297,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    public float CalculateCurrSatifaction(List<string> finalIngredients)
+    public float CalculateCurrSatifaction(List<string> _finalIngredients)
     {
         float tmpScore = 0.0f;
 
@@ -305,7 +307,7 @@ public class GameManager : MonoBehaviour
 
 
         // Num
-        int ingredientsDiff = Mathf.Abs(finalIngredients.Count - goalIngrendients.Count);
+        int ingredientsDiff = Mathf.Abs(_finalIngredients.Count - goalIngrendients.Count);
         float numPunctuation = (((goalIngrendients.Count - ingredientsDiff) * numPercentatge) * 10) / (goalIngrendients.Count);
         if (numPunctuation < 0) numPunctuation = 0;
 
@@ -313,11 +315,11 @@ public class GameManager : MonoBehaviour
         int currCoincidences = 0;
         foreach (IngredientClass ingredient in goalIngrendients)
         {
-            int elementId = Utils.FindInList<string>(finalIngredients, ingredient.name);
+            int elementId = Utils.FindInList<string>(_finalIngredients, ingredient.name);
             if (elementId >= 0)
             {
                 currCoincidences++;
-                finalIngredients.RemoveAt(elementId);
+                _finalIngredients.RemoveAt(elementId);
             }
             else
             {
@@ -346,9 +348,14 @@ public class GameManager : MonoBehaviour
 
 
         // Total
-        tmpScore = (numPunctuation + ingredientsCoincidencePunctuation + speedPunctuation) * 10;
+        tmpScore = currSatisfaction = (numPunctuation + ingredientsCoincidencePunctuation + speedPunctuation) * 10;
 
         return tmpScore;
+    }
+
+    public static float GetCurrSatisfaction()
+    {
+        return currSatisfaction;
     }
 
     public static void SetCurrScore(int _currScore)

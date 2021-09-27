@@ -19,6 +19,7 @@ public class MoveCamera : MonoBehaviour
         tableTargetRotation = transform.localRotation;
 
         GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().Reinit();
+        Application.targetFrameRate = 60;
 
         //Debug.Log(transform.localRotation);
     }

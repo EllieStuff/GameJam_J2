@@ -72,8 +72,8 @@ public class SettingsMenu : MonoBehaviour
             else
             {
                 audioSource.pitch = 1 + Random.RandomRange(minPitch, maxPitch) * Utils.RandomizePositiveNegative();
-
-                audioSource.PlayOneShot(clip);
+                audioSource.clip = clip;
+                audioSource.Play();
             }
         }
 

@@ -11,6 +11,8 @@ public class MainMenu : MonoBehaviour
     {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         gameManager.Reinit();
+        Application.targetFrameRate = 60;
+
     }
 
 
