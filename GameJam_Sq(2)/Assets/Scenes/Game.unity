@@ -2945,7 +2945,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 237244827}
         m_MethodName: Retry
         m_Mode: 1
         m_Arguments:
@@ -3370,6 +3370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644918c75653d7d43b34c47754f39d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ingredientTextPrefab: {fileID: 484624451568762662, guid: 7958e7582129f4d4c93e961a5322e18f,
+    type: 3}
   ingredients: []
 --- !u!114 &961790269
 MonoBehaviour:
@@ -3494,7 +3496,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 237244827}
         m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:

@@ -17,6 +17,9 @@ public class DeliverMenu : MonoBehaviour
     private MoveCamera camera;
     private GameManager gameManager;
 
+    private InGameMaxScoreScript scoreTextScript;
+    private int lastCalculatedScore = 0;
+
     //public GameObject standartUI;
 
     // Update is called once per frame
@@ -25,6 +28,7 @@ public class DeliverMenu : MonoBehaviour
     {
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MoveCamera>();
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        scoreTextScript = FindObjectOfType<InGameMaxScoreScript>();
 
         initialScorePos = scoreText.transform.position;
         targetScorePos = new Vector3(initialScorePos.x, initialScorePos.y + scoreTextYMove, initialScorePos.z);
@@ -51,6 +55,8 @@ public class DeliverMenu : MonoBehaviour
         GameManager.gameState = Const.GameState.DELIVERING;
 
         GameObject.FindGameObjectWithTag("Pizza").GetComponent<PizzaScript>().SetRefreshIngredients(false);
+        lastCalculatedScore = GameManager.GetCurrScore() + (int)gameManager.CalculateCurrSatifaction(gameManager.GetPizzaIngredients());
+        scoreTextScript.SetScoreText(lastCalculatedScore);
         //Time.timeScale = 0f;
 
         StartCoroutine(LerpScorePos(initialScorePos, targetScorePos, scoreTextSpeed));
@@ -62,6 +68,7 @@ public class DeliverMenu : MonoBehaviour
         GameManager.gameState = Const.GameState.PLAYING;
 
         GameObject.FindGameObjectWithTag("Pizza").GetComponent<PizzaScript>().SetRefreshIngredients(true);
+        scoreTextScript.SetScoreText(GameManager.GetCurrScore());
 
         StartCoroutine(LerpScorePos(targetScorePos, initialScorePos, scoreTextSpeed));
     }
@@ -72,7 +79,7 @@ public class DeliverMenu : MonoBehaviour
         Time.timeScale = 1f;
 
         PlayerPrefs.SetInt("currTimeLeft", ClockManager.GetTimeLeft());
-        GameManager.SetCurrScore(GameManager.GetCurrScore() + (int)gameManager.CalculateCurrSatifaction(gameManager.GetPizzaIngredients()));
+        GameManager.SetCurrScore(lastCalculatedScore);
 
 
         SceneManager.LoadScene("Game");

@@ -258,7 +258,7 @@ public class GameManager : MonoBehaviour
 
     public List<string> GetPizzaIngredients()
     {
-        return pizzaScript.ingredients;
+        return pizzaScript.GetCurrIngredients();
     }
 
     public bool CheckIfGoalIngredient(string _ingredientName)
@@ -276,6 +276,7 @@ public class GameManager : MonoBehaviour
     }
     public bool CheckIfCurrIngredient(string _ingredientName)
     {
+        //string targetName = " - " + _ingredientName;
         foreach (string ingredientName in pizzaScript.GetCurrIngredients())
         {
             if (_ingredientName == ingredientName)
@@ -302,17 +303,19 @@ public class GameManager : MonoBehaviour
         float tmpScore = 0.0f;
 
         float numPercentatge = 0.2f;
-        float ingredientsCoincidencePercentatge = 0.4f;
-        float speedPercentatge = 0.4f;
+        float ingredientsCoincidencePercentatge = 0.8f;
+        float speedPercentatge = 0.2f;
 
 
         // Num
         int ingredientsDiff = Mathf.Abs(_finalIngredients.Count - goalIngrendients.Count);
         float numPunctuation = (((goalIngrendients.Count - ingredientsDiff) * numPercentatge) * 10) / (goalIngrendients.Count);
         if (numPunctuation < 0) numPunctuation = 0;
+        if (_finalIngredients.Count == 0) return -10;
 
         // Coincidence
         int currCoincidences = 0;
+        bool minimumFlag = false;
         foreach (IngredientClass ingredient in goalIngrendients)
         {
             int elementId = Utils.FindInList<string>(_finalIngredients, ingredient.name);
@@ -320,6 +323,7 @@ public class GameManager : MonoBehaviour
             {
                 currCoincidences++;
                 _finalIngredients.RemoveAt(elementId);
+                minimumFlag = true;
             }
             else
             {
@@ -327,10 +331,12 @@ public class GameManager : MonoBehaviour
             }
         }
         float ingredientsCoincidencePunctuation = ((currCoincidences * ingredientsCoincidencePercentatge) * 10) / (goalIngrendients.Count);
-        if (ingredientsCoincidencePunctuation < 0) ingredientsCoincidencePunctuation = 0;
+        //if (ingredientsCoincidencePunctuation < 0) ingredientsCoincidencePunctuation = 0;
+        //if (ingredientsCoincidencePunctuation < 0.1f) ingredientsCoincidencePunctuation = -5 * (goalIngrendients.Count - currCoincidences);
+        if (!minimumFlag) return -20;
 
         // Speed
-        float expectedMedianSpeed = 6.8f;
+        float expectedMedianSpeed = 5.0f;
         float bestExpectedTime = goalIngrendients.Count * expectedMedianSpeed;
         float realTakenTime = ClockManager.GetTimeTaken();
 

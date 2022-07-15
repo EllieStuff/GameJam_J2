@@ -9,8 +9,13 @@ public class InGameMaxScoreScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<TextMeshProUGUI>().text = "Curr. Score: " + GameManager.GetCurrScore();
+        SetScoreText(GameManager.GetCurrScore());
 
+    }
+
+    public void SetScoreText(int _score)
+    {
+        GetComponent<TextMeshProUGUI>().text = "Curr. Score: " + _score.ToString();
     }
 
 }

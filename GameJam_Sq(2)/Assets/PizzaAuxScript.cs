@@ -32,7 +32,7 @@ public class PizzaAuxScript : MonoBehaviour
     {
         if (main.GetRefreshIngredients() && main.IsValidIngredient(col.gameObject.tag))
         {
-            if (!(col.CompareTag("Pan") && main.ingredients.Contains("Pan")))
+            if (!(col.CompareTag("Pan") && main.ingredients.Find(tmPro => tmPro.text == "Pan")))
             {
                 main.AddIngredient(col.gameObject.tag);
             }
