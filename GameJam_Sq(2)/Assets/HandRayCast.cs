@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 //using SpeechLib;
 
 public class HandRayCast : MonoBehaviour
@@ -12,6 +13,7 @@ public class HandRayCast : MonoBehaviour
     private bool itemCatched = false;
 
     private AudioSource audio;
+    private TextMeshProUGUI inHandText;
     private bool audioOn = true;
 
 
@@ -21,7 +23,7 @@ public class HandRayCast : MonoBehaviour
         manager = GetComponentInParent<PersonManager>();
         bodyScript = manager.body.GetComponent<FollowMouse>();
         audio = GetComponent<AudioSource>();
-
+        inHandText = GameObject.Find("InHand_Text").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -71,8 +73,8 @@ public class HandRayCast : MonoBehaviour
                             Debug.Log("Clip '" + currentItem.tag + "' not found");
                         else
                         {
+                            inHandText.text = "In Hand: " + currentItem.tag + ".";
                             audio.pitch = 1 + Random.RandomRange(minPitch, maxPitch) * Utils.RandomizePositiveNegative();
-
                             audio.PlayOneShot(clip);
                         }
 
@@ -86,6 +88,7 @@ public class HandRayCast : MonoBehaviour
                     {
                         lastHandAboveItem.GetComponent<Outline>().enabled = false;
                         lastHandAboveItem = null;
+                        inHandText.text = "In Hand:";
                     }
                 }
 
