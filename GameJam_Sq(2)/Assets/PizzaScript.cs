@@ -6,6 +6,7 @@ using TMPro;
 public class PizzaScript : MonoBehaviour
 {
     //public string[] ingredients;
+    public TextMeshProUGUI ingredientTextPrefab;
     public List<string> ingredients = new List<string>();
 
     private TextMeshProUGUI ingredientsText;
@@ -31,9 +32,9 @@ public class PizzaScript : MonoBehaviour
 
         // ToDo: Mirar perque surt dels limits de l'array quan poses algun ingredient aqui
 
-        //ingredientsText.ForceMeshUpdate();
-        //Utils.PaintTMProWords(ingredientsText, namesToChange);
-        //ingredientsText.UpdateVertexData();
+        ingredientsText.ForceMeshUpdate();
+        Utils.PaintTMProWords(ingredientsText, namesToChange);
+        ingredientsText.UpdateVertexData();
     }
 
     public void SetRefreshIngredients(bool newState)
@@ -86,21 +87,21 @@ public class PizzaScript : MonoBehaviour
     {
         ingredients.Add(_ingredientName);
 
-        //for (int i = 0; i < gameManager.GetGoalIngredientsList().Count; i++)
-        //{
-        //    int totalWordsAmmount = Utils.GetWordsAmmount(ingredients.ToArray());
-        //    int nameWordsAmmount = Utils.GetWordsAmmount(currIngredientName);
+        for (int i = 0; i < gameManager.GetGoalIngredientsList().Count; i++)
+        {
+            int totalWordsAmmount = Utils.GetWordsAmmount(ingredients.ToArray());
+            int nameWordsAmmount = Utils.GetWordsAmmount(_ingredientName);
 
-        //    if (gameManager.CheckIfGoalIngredient(currIngredientName))
-        //    {
-        //        namesToChange.Add(new Utils.TMProName(currIngredientName, Color.green, nameWordsAmmount, totalWordsAmmount + i));
-        //    }
-        //    else
-        //    {
-        //        namesToChange.Add(new Utils.TMProName(currIngredientName, Color.red, nameWordsAmmount, totalWordsAmmount + i));
-        //    }
+            if (gameManager.CheckIfGoalIngredient(_ingredientName))
+            {
+                namesToChange.Add(new Utils.TMProName(_ingredientName, Color.green, nameWordsAmmount, totalWordsAmmount + i));
+            }
+            else
+            {
+                namesToChange.Add(new Utils.TMProName(_ingredientName, Color.red, nameWordsAmmount, totalWordsAmmount + i));
+            }
 
-        //}
+        }
 
         RefreshText();
     }

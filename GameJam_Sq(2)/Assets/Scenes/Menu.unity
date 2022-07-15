@@ -451,6 +451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 67830621}
   - component: {fileID: 67830620}
+  - component: {fileID: 67830622}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -527,6 +528,24 @@ RectTransform:
   m_AnchoredPosition: {x: -0.01, y: -0.22}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &67830622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67830619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddeacee734a66864e8fc1e3c98dbb522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: {x: 0.05, y: 0, z: 0}
+  rotSpeed: {x: 0, y: 0, z: 0}
+  applyChangeRotDir: 0
+  changeRotDirTimes: {x: 5, y: 5, z: 0}
+  frequency: 1
+  stopOverTime: -1
 --- !u!1 &76849123
 GameObject:
   m_ObjectHideFlags: 0
@@ -2330,7 +2349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &632809177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3665,7 +3684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1666246989
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5078,7 +5097,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2120818481}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400978035}
@@ -5086,7 +5105,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 109.72}
+  m_AnchoredPosition: {x: -18, y: 95}
   m_SizeDelta: {x: 472.57617, y: -64.99457}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2120818483
@@ -5108,8 +5127,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Videogame created by: \n      Joel Mateu Gallardo \n          & \n     
-    Joel Romero Bru\n\n"
+  m_text: "Videogame created by: \n\n       Elisabeth Mateu Gallardo \n           
+    & \n        Joel Romero Bru\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 190cd7d86331c494d8afbb4be0fa2eb6, type: 2}
   m_sharedMaterial: {fileID: -7637989514037053632, guid: 190cd7d86331c494d8afbb4be0fa2eb6,
@@ -5139,8 +5158,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5156,7 +5175,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 23
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -5180,12 +5199,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2120818483}
-    characterCount: 86
+    characterCount: 92
     spriteCount: 0
-    spaceCount: 36
+    spaceCount: 37
     wordCount: 9
     linkCount: 0
-    lineCount: 5
+    lineCount: 6
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
